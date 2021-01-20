@@ -60,9 +60,11 @@ $(document).ready(function () {
             data: JSON.stringify(jsonData),
             contentType: "application/json",
             dataType: "json",
-            success:function (result){
-                if (result.mark==1){
+            success:function (user){
+                console.log(user)
+                if (user!=null){
                     alert("登录成功");
+                    localStorage.setItem("user",user);
                     window.location.href="UserLogin.html";
                 }else{
                     alert("登录失败，请重新登录");
