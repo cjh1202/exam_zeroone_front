@@ -34,7 +34,7 @@ $(document).ready(function () {
             <span style="letter-spacing:4px;">登录密码:</span>
             <input name="" type="password" class="userpwd" placeholder="请输入登录密码"/>
         </div>
-        <div class="xiayibu">登录</div>
+        <div class="denglu">登录</div>
      </div>
   </div>
 </div>
@@ -46,4 +46,30 @@ $(document).ready(function () {
   </div> 
 </div>
 </body>
+<script>
+    $(".denglu").click(function () {
+        var userphone=$(".userphone").val()
+        var password=$(".userpwd").val()
+        var jsonData={}
+        jsonData.u_phone=userphone;
+        jsonData.u_password=password;
+
+        $.ajax({
+            url: "http://localhost:8080/exam_zeroone_ssm/login",
+            type: "post",
+            data: JSON.stringify(jsonData),
+            contentType: "application/json",
+            dataType: "json",
+            success:function (result){
+                if (result.mark==1){
+                    alert("登录成功");
+                    window.location.href="UserLogin.html";
+                }else{
+                    alert("登录失败，请重新登录");
+                    window.location.href="UserLogin.html";
+                }
+            }
+        })
+    })
+</script>
 </html>
