@@ -4,7 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>注册</title>
 <link type="text/css" rel="stylesheet" href="css/zhuce.css" />
-<script type="text/javascript" src="js/zhuce.js"></script>
 <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -27,26 +26,24 @@ $(document).ready(function () {
             <img src="images/user.png" />
             <div class="pp">天亮教育在线考试系统注册</div>
         </div>
-         <div class="sub"><p>已经注册？<a href="index.html"><span class="blue">请登录</span></a></p></div>
+         <div class="sub"><p>已经注册？<a href="UserLogin.html"><span class="blue">请登录</span></a></p></div>
+         <form action="" id="form">
          <div class="txt txt0">
              <span style="letter-spacing:8px;">用户名:</span>
-             <input name="" type="text" class="username" placeholder="请输入用户名"/>
+             <input name="username" type="text" class="username"  placeholder="请输入用户名"/>
          </div>
          <div class="txt txt0">
              <span style="letter-spacing:8px;">手机号:</span>
-             <input name="" type="text" class="userphone" placeholder="请输入手机号"/>
+             <input name="userphone" type="text" class="userphone" placeholder="请输入手机号"/>
          </div>
          <div class="txt txt0">
              <span style="letter-spacing:4px;">登录密码:</span>
-             <input name="" type="password" class="userpwd" placeholder="请输入密码"/>
+             <input name="userpwd" type="password" class="userpwd" placeholder="请输入密码"/>
          </div>
          <div class="txt txt0">
-             <span style="letter-spacing:4px;">输入邮箱:</span>
-             <input name="" type="text" class="useremail" placeholder="请输入邮箱"/>
+             <div class="zhucebtn">确认注册</div></a>
          </div>
-         <div class="txt txt0">
-             <a href="zhuceSucc.html"><div class="zhucebtn">确认注册</div></a>
-         </div>
+         </form>
      </div>
   </div>
 </div>
@@ -58,4 +55,8 @@ $(document).ready(function () {
   </div> 
 </div>
 </body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/messages_zh.min.js"></script>
+<script src="js/jqValidata.js"></script>
 </html>
