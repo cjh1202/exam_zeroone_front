@@ -59,4 +59,33 @@ $(document).ready(function () {
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/messages_zh.min.js"></script>
 <script src="js/jqValidata.js"></script>
+<script>
+    $(".zhucebtn").click(function () {
+        var username=$(".username").val()
+        var userphone=$(".userphone").val()
+        var userpwd=$(".userpwd").val()
+        var jsonData={}
+        jsonData.u_username=username;
+        jsonData.u_password=userpwd;
+        jsonData.u_phone=userphone;
+
+        $.ajax({
+            url: "http://localhost:8080/exam_zeroone_ssm/regist",
+            type: "post",
+            data: JSON.stringify(jsonData),
+            contentType: "application/json",
+            dataType: "json",
+            success:function (result){
+                if (result.mark==1){
+                    alert("注册成功");
+                    window.location.href="UserLogin.html";
+                }else{
+                    alert("注册失败");
+                    window.location.href="UserRegister.html";
+                }
+            }
+        })
+
+    })
+</script>
 </html>
