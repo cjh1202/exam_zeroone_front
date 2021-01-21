@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/TeacherPersonalInfo.css">
+    <script src="js/public.js"></script>
+</head>
+<body>
+<div class="container flgure">
+    <div class="content">
+        <ul class="clearfix info">
+            <li class="active">单选题</li>
+            <li>简答题</li>
+        </ul>
+        <div class="basic">
+            <div class="select active">
+                <p>
+
+                    <span style="margin-left: 20px" id="saveSingle">保存</span>
+                </p>
+                <div class="left fl">
+                    <div>
+                        <span>题目内容</span>
+                        <textarea rows="10px" cols="50px" name="content" id="content"></textarea>
+                    </div>
+                    <div>
+                        A选项<input type="text" name="answerA" id="answerA">
+                    </div>
+                    <div>
+                        B选项<input type="text" name="answerB" id="answerB">
+                    </div>
+                    <div>
+                        C选项<input type="text" name="answerC" id="answerC">
+                    </div>
+                    <div>
+                        D选项<input type="text" name="answerD" id="answerD">
+                    </div>
+                    <div>
+                        设置答案<input type="text" name="score" id="answer">
+                    </div>
+                    <div>
+                        设置分数<input type="text" name="score" id="score">
+                    </div>
+                    <div>
+                        试题分类<input type="text" name="classify" id="classify">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="select ">
+                <p>
+
+                    <span style="margin-left: 20px" id="saveBrief">保存</span>
+                </p>
+                <div class="left fl">
+                    <div>
+                        <span>题目内容</span>
+                        <textarea rows="10px" cols="50px" name="content" id="content1"></textarea>
+                    </div>
+                    <div>
+                        设置答案<textarea rows="10px" cols="50px" name="answer1" id="answer1"></textarea>
+                    </div>
+                    <div>
+                        设置分数<input type="text" name="score" id="score1">
+                    </div>
+                    <div>
+                        试题分类<input type="text" name="classify" id="classify1">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+
+<script>
+    $('.info li').click(function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        $('.basic .select').eq($("ul li").index(this)).addClass("active").siblings().removeClass("active")
+    });
+</script>
+
+
+<script>
+    $("#saveSingle").click(function () {
+        var jsondata = {};
+
+        jsondata.s_content = $("#content").val();
+        jsondata.s_a = $("#answerA").val();
+        jsondata.s_b = $("#answerB").val();
+        jsondata.s_c = $("#answerC").val();
+        jsondata.s_d = $("#answerD").val();
+        jsondata.s_score=$("#score").val()
+        jsondata.s_answer=$("#answer").val();
+        jsondata.s_classify=$("#classify").val();
+
+        jsondata.u_id=user2.u_id;
+
+
+        $.ajax({
+            url:publicUrl+"addSingleChoice",
+            type:"post",
+            data:JSON.stringify(jsondata),
+            contentType:"application/json",
+            dataType:"json",
+            success:function (result){
+                if(result.mark==1){
+                    window.location.href="successful.html";
+                }else if(result.mark==0){
+
+                    window.location.href="fail.html";
+                }
+            }
+        });
+
+    });
+
+</script>
+
+<script>
+    $("#saveBrief").click(function (){
+        var jsondata = {};
+
+        jsondata.b_content = $("#content1").val();
+        jsondata.b_score=$("#score1").val()
+        jsondata.b_answer=$("#answer1").val();
+        jsondata.b_classify=$("#classify1").val();
+        jsondata.u_id=user2.u_id;
+
+        $.ajax({
+            url:publicUrl+"addBriefAnswer",
+            type:"post",
+            data:JSON.stringify(jsondata),
+            contentType:"application/json",
+            dataType:"json",
+            success:function (result){
+                if(result.mark==1){
+                    window.location.href="successful.html";
+                }else if(result.mark==0){
+                    alert("账户或密码错误");
+                    window.location.href="fail.html";
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

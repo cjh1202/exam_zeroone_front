@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/StudentLeft.css">
+	</head>
+	<body>
+		<div class="nav">
+			<div class="nav-list">
+				<div class="nav-tit" id="personal">
+					<a  target="main">
+						<img src="images/PubMed-msg.png" alt="">
+						<span>题库管理</span>
+					</a>
+				</div>
+				<div class="personal-list" id="personal_child">
+					<ul>
+						<li><a href="SingleTopicInfo.html" target="main">查询单选题</a></li>
+						<li><a href="BriefTopicInfo.html" target="main">查询简答题</a></li>
+						<li><a href="addTopic.html" target="main">添加试题</a></li>
+
+					</ul>
+				</div>
+				<div class="nav-tit">
+					<a href=".html" target="main">
+						<img src="images/job-msg.png" alt="">
+						<span>试卷管理</span>
+					</a>
+				</div>
+				<!--<div class="nav-tit" id="personal">
+					<a href="StudentInfo.html" target="main">
+						<img src="images/PubMed-msg.png" alt="">
+						<span>学生信息</span>
+					</a>
+				</div>
+				<div class="personal-list" id="personal_child">
+					<ul>
+						<li><a href="FamilyInformation.html" target="main">学生基本信息</a></li>
+						<li><a href="TeacherEmInformation.html" target="main">就业学生信息</a></li>
+						<li><a href="Teacherinvestigation.html" target="main">就业信息调查</a></li>
+						<li><a href="TeacherPubMed.html" target="main">考研学生信息</a></li>
+					</ul>
+				</div>
+-->
+			</div>
+		</div>
+		
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(document).ready(function(){
+				$('#personal').on('click',function(){
+					$('#personal_child').fadeToggle(300);
+				});
+				let aLi = $('#personal_child li');
+				aLi.on('click',function(){
+					$(this).addClass('active').siblings('li').removeClass('active');
+				})
+			});
+		</script>
+	</body>
+</html>

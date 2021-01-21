@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/TeacherInfo.css"/>
+		<style>
+			#div1{
+				position: relative;
+				left: 500px;
+			}
+		</style>
+	</head>
+	<body>
+	<div id="div1">
+	<select id="select">
+		<option>----请选择分类----</option>
+	</select><button>搜索</button>
+	</div>
+		<!--<div class="container flgure">
+			<div class="content">
+				<ul class="clearfix info">
+					<li class="active">查询结果</li>
+					<li><a href="addTopic.html">添加试题</a></li>
+				</ul>
+				<table id="myTable"></table>
+
+			</div>
+		</div>-->
+	<div class="container flgure">
+		<div class="content">
+			<ul class="clearfix info">
+				<li class="active">简答题查询结果</li>
+			</ul>
+			<div class="basic">
+				<div class="select active">
+					<table id="myTable2"></table>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<script src="js/jquery-3.5.1.js"></script>
+	<script>
+		$("#select").click(function () {
+			jsdata={};
+			jsdata.
+			$("select").get(0).innerHTML='<option>----请选择分类----</option>' +
+					'<option>----请选择分类----</option>'
+		})
+	</script>
+	</body>
+
+	<script src="js/jquery-3.2.1.js"></script>
+	<script src="js/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script src="js/topicTable2.js"></script>
+
+
+
+</html>

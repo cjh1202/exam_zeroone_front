@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.5.1.js"></script>
+		<script>
+			$(function (){
+				/*var user;
+				localStorage.setItem("user",user);*/
+				var user = localStorage.getItem("user");
+				if(user==null){
+					window.location.href="UserLogin.html"
+				}
+			})
+
+
+
+
+
+		</script>
+
+	</head>
+	<frameset frameborder="0" rows="60,*">
+		<frame src="Top.html" noresize="noresize" scrolling="no" />
+		<frameset frameborder="0" cols="210,*">
+			<frame src="Left.html" noresize="noresize" scrolling="no" />
+			<frame src="TeacherRight.html" noresize="noresize" scrolling="yes" name="main" />
+		</frameset>
+	</frameset>
+
+
+</html>
