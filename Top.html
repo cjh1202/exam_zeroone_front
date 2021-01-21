@@ -57,7 +57,7 @@
 				<div class="right">
 					
 					<span id="u1"></span>
-					<span class="r">退出登录</span>
+					<span class="r" id="exit"><a href="javascript:void(0)" onclick="exit()">退出登录</a></span>
 				</div>
 			</div>
 		</div>
@@ -65,13 +65,20 @@
 	<script src="js/jquery-3.5.1.js"></script>
 
 	<script>
-		/*var user;
-		localStorage.setItem("user",user)*/
-
 
 		if(user2!=null){
 			$("#u1").text("用户名:"+user2.u_username)
 		}
+
+
 	</script>
+
+	<script>
+		function exit(){
+			localStorage.removeItem("user");
+
+		}
+	</script>
+
 
 </html>
