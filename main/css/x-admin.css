@@ -181,8 +181,8 @@ input[type="text"]:disabled {
 .x-login-box .layui-form-label1{
   width: 300px;
 }
-.x-login-box .layui-form-label{
-  width: 30px;
+.layui-form-label{
+  width: 70px;
 }
 .x-login-box i{
   font-size: 28px;
