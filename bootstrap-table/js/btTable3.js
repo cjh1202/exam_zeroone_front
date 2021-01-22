@@ -16,7 +16,7 @@ function load() {
     var q_content = localStorage.getItem("q_content");
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/findAllQuestionBank",
+        url: "http://localhost:8080/exam_zeroone_ssm/fuzzySearch",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -28,7 +28,8 @@ function load() {
             var paramsJSON = {
                 offset: params.offset,
                 pageNumber: params.limit,
-                u_id: user.u_id
+                u_id: user.u_id,
+                q_content:q_content
             };
 
             return JSON.stringify(paramsJSON)
@@ -90,8 +91,8 @@ function load() {
                     let m='<a href="javascript:void(0);" onclick="modifyTopic(\''+row.q_id+'\',\''
                         +row.q_type+'\',\''+row.q_classify+'\',\''+row.q_content+'\',\''+row.q_a+'\',\''
                         +row.q_b+'\',\''+row.q_c+'\',\''+row.q_d+'\',\''+row.q_answer+'\',\''+row.q_score+'\')">修改</a>'
-                    let detail = '<a href="javascript:void(0);" onclick="fetchDetail(\'' + row.id + '\')">详情</a>'
-                    return d + " " + m + " " + detail
+
+                    return d + " " + m + " "
                 }
             }
         ]

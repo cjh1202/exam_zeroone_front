@@ -90,8 +90,8 @@ function load() {
                     let m='<a href="javascript:void(0);" onclick="modifyTopic(\''+row.q_id+'\',\''
                         +row.q_type+'\',\''+row.q_classify+'\',\''+row.q_content+'\',\''+row.q_a+'\',\''
                         +row.q_b+'\',\''+row.q_c+'\',\''+row.q_d+'\',\''+row.q_answer+'\',\''+row.q_score+'\')">修改</a>'
-                    let detail = '<a href="javascript:void(0);" onclick="fetchDetail(\'' + row.id + '\')">详情</a>'
-                    return d + " " + m + " " + detail
+
+                    return d + " " + m + " "
                 }
             }
         ]
