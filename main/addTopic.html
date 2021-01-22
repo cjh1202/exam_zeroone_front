@@ -17,7 +17,6 @@
         <div class="basic">
             <div class="select active">
                 <p>
-
                     <span style="margin-left: 20px" id="saveSingle">保存</span>
                 </p>
                 <div class="left fl">
@@ -37,8 +36,15 @@
                     <div>
                         D选项<input type="text" name="answerD" id="answerD">
                     </div>
-                    <div>
-                        设置答案<input type="text" name="score" id="answer">
+                    <div >
+                        设置答案
+                        <div style="width: 700px">
+                            A<input type="radio"  name="answer" value="A">
+                            B<input type="radio" name="answer" value="B">
+                            C<input type="radio" name="answer" value="C">
+                            D<input type="radio" name="answer" value="D">
+                        </div>
+
                     </div>
                     <div>
                         设置分数<input type="text" name="score" id="score">
@@ -91,19 +97,27 @@
     $("#saveSingle").click(function () {
         var jsondata = {};
 
-        jsondata.s_content = $("#content").val();
-        jsondata.s_a = $("#answerA").val();
-        jsondata.s_b = $("#answerB").val();
-        jsondata.s_c = $("#answerC").val();
-        jsondata.s_d = $("#answerD").val();
-        jsondata.s_score=$("#score").val()
-        jsondata.s_answer=$("#answer").val();
-        jsondata.s_classify=$("#classify").val();
+        jsondata.q_content = $("#content").val();
+        jsondata.q_a = $("#answerA").val();
+        jsondata.q_b = $("#answerB").val();
+        jsondata.q_c = $("#answerC").val();
+        jsondata.q_d = $("#answerD").val();
+        jsondata.q_score=$("#score").val()
+        var value="";
+        var answer=document.getElementsByName("answer");
+        for (i=0;i<answer.length;i++){
+            if (answer[i].checked==true){
+                value=answer[i].value;
+            }
+        }
+        jsondata.q_answer=value;
+        jsondata.q_classify=$("#classify").val();
 
         jsondata.u_id=user2.u_id;
 
-
+        console.log(jsondata)
         $.ajax({
+
             url:publicUrl+"addSingleChoice",
             type:"post",
             data:JSON.stringify(jsondata),
@@ -127,10 +141,10 @@
     $("#saveBrief").click(function (){
         var jsondata = {};
 
-        jsondata.b_content = $("#content1").val();
-        jsondata.b_score=$("#score1").val()
-        jsondata.b_answer=$("#answer1").val();
-        jsondata.b_classify=$("#classify1").val();
+        jsondata.q_content = $("#content1").val();
+        jsondata.q_score=$("#score1").val()
+        jsondata.q_answer=$("#answer1").val();
+        jsondata.q_classify=$("#classify1").val();
         jsondata.u_id=user2.u_id;
 
         $.ajax({

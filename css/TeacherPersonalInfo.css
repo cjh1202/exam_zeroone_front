@@ -49,7 +49,7 @@
 .basic .select.active {
     display: block;
 }
-.select .left, .select .right{
+.select .left{
     margin-top:25px;
     width:50%;
 }
