@@ -66,7 +66,8 @@
 <script>
     $("#saveSingle").click(function () {
         var jsondata = {};
-
+        var q_id = localStorage.getItem("q_id");
+        jsondata.q_id=q_id;
         jsondata.q_content = $("#content").val();
         jsondata.q_a = $("#answerA").val();
         jsondata.q_b = $("#answerB").val();
@@ -88,17 +89,17 @@
         console.log(jsondata)
         $.ajax({
 
-            url:publicUrl+"addSingleChoice",
+            url:publicUrl+"updateSingleChoice",
             type:"post",
             data:JSON.stringify(jsondata),
             contentType:"application/json",
             dataType:"json",
             success:function (result){
                 if(result.mark==1){
-                    window.location.href="successful.html";
+                    window.location.href="../successful.html";
                 }else if(result.mark==0){
 
-                    window.location.href="fail.html";
+                    window.location.href="../fail.html";
                 }
             }
         });

@@ -50,54 +50,14 @@
 </script>
 
 
-<script>
-    $("#saveSingle").click(function () {
-        var jsondata = {};
 
-        jsondata.q_content = $("#content").val();
-        jsondata.q_a = $("#answerA").val();
-        jsondata.q_b = $("#answerB").val();
-        jsondata.q_c = $("#answerC").val();
-        jsondata.q_d = $("#answerD").val();
-        jsondata.q_score=$("#score").val()
-        var value="";
-        var answer=document.getElementsByName("answer");
-        for (i=0;i<answer.length;i++){
-            if (answer[i].checked==true){
-                value=answer[i].value;
-            }
-        }
-        jsondata.q_answer=value;
-        jsondata.q_classify=$("#classify").val();
 
-        jsondata.u_id=user2.u_id;
-
-        console.log(jsondata)
-        $.ajax({
-
-            url:publicUrl+"addSingleChoice",
-            type:"post",
-            data:JSON.stringify(jsondata),
-            contentType:"application/json",
-            dataType:"json",
-            success:function (result){
-                if(result.mark==1){
-                    window.location.href="successful.html";
-                }else if(result.mark==0){
-
-                    window.location.href="fail.html";
-                }
-            }
-        });
-
-    });
-
-</script>
 
 <script>
     $("#saveBrief").click(function (){
         var jsondata = {};
-
+        var q_id = localStorage.getItem("q_id");
+        jsondata.q_id=q_id;
         jsondata.q_content = $("#content1").val();
         jsondata.q_score=$("#score1").val()
         jsondata.q_answer=$("#answer1").val();
@@ -105,7 +65,7 @@
         jsondata.u_id=user2.u_id;
 
         $.ajax({
-            url:publicUrl+"addBriefAnswer",
+            url:publicUrl+"updateBriefAnswer",
             type:"post",
             data:JSON.stringify(jsondata),
             contentType:"application/json",
