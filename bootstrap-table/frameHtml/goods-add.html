@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品添加</title>
+</head>
+<body>
+<!--<form action="http://localhost:8080/SpringMVCBase_goods_jx/goodsAdd" method="post">-->
+<form action="#" enctype="multipart/form-data" method="post" id="myForm">
+    商品id<input type="text" name="id"><br/>
+    商品名称<input type="text" name="name"><br/>
+    商品分类<select id="category" name="category">
+    <option value="食品类">食品类</option>
+    <option value="手机">手机</option>
+    <option value="电脑">电脑</option>
+    <option value="服装">服装</option>
+</select><br/>
+    商品详情<input type="text" name="detail"><br/>
+    商品库存<input type="text" name="stock"><br/>
+    商品金额<input type="text" name="money"><br/>
+<!--    <input type="file" name="file"><br/>-->
+</form>
+<button onclick="saveData()">添加</button>
+
+</body>
+<script src="../../js/jquery-3.2.1.min.js"></script>
+<script src="../../js/goods-add.js"></script>
+</html>
