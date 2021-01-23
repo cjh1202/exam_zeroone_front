@@ -18,6 +18,16 @@
 			float: left;
 		}
 	</style>
+	<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+	<script type="">
+		$(function (){
+			var user = localStorage.getItem("user");
+			var user1 = JSON.parse(user);
+			if(user1!=null){
+				$("#username").text(user1.u_username)
+			}
+		})
+	</script>
 </head>
 
 <body>
@@ -31,7 +41,7 @@
 		</div>
 	</div>
     <div class="user">
-    <span>admin</span>
+    <span id="username">admin</span>
     </div> 
     
 </body>
