@@ -10,56 +10,86 @@ function reLoad(){
 }
 
 function load() {
+    var q_type="单选题";
     var jsondata = {};
     var item = localStorage.getItem("user");
-    var item1 = localStorage.getItem("Tid");
-    console.log(item1)
     var user = JSON.parse(item);
     var q_id=[]
     var q_idAll=[]
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/findAllTestQuestionBank",
+        url: "http://localhost:8080/exam_zeroone_ssm/findAllSingleChoice",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
         pagination: true,//是否分页
         sidePagination: 'server',
-        pageSize:15,//每页记录数
+        pageSize: 15,//每页记录数
         method: 'POST',
         queryParams: function (params) {
             var paramsJSON = {
                 offset: params.offset,
                 pageNumber: params.limit,
                 u_id: user.u_id,
-                t_id:item1
+                q_type:q_type
             };
 
             return JSON.stringify(paramsJSON)
         },
+
         columns: [
-
             {
-                title: "<input type='checkbox' class='selectAllTestAnswer' onclick='selectAllTestAnswer()'/>全选",
-                align:"center",
-                halign:"center",
-                formatter:function (value,row,index){
-                    return "<input type='checkbox' class='deleteTestAnswer' value='"+row.tq_id+"'/>"+(index+1);
+                field : 'checked',
+                checkbox: true,
+                align: 'center',
+                valign: 'middle',
+                formatter: function (value, row, index) {
+                    return index+1;
                 }
             },
             {
-                title: "试题详情",
-                //align:"center",
-                halign:"center",
-                formatter:function (value,row,index){
-                    if (row.tq_type==="单选题"){
-                        return "<p>["+row.tq_type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p class='singel'>A、"+row.tq_a+"</p><p class='singel'>B、"+row.tq_b+"</p><p class='singel'>C、"+row.tq_c+"</p><p class='singel'>D、"+row.tq_d+"</p><p>正确答案："+row.tq_answer+"</p>"
-                    }else if (row.tq_type==="简答题"){
-                        return "<p>["+row.tq_type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p>正确答案："+row.tq_answer+"</p>"
-                    }
+                title: '行号',
+                align: "center",//水平居中
+                halign: "center",//垂直居中
+                width: 100,
+                formatter: function (value, row, index) {
+                    return index + 1;
                 }
 
             },
+            // {
+            //     title:'行号',
+            //     field:'id'
+            // },
+            {
+                title: '题目类型',
+                align: "center",//水平居中
+                halign: "center",//垂直居中
+                field: 'q_type',
+                width: 100
+            },
+            {
+                title: '试题分类',
+                align: "center",//水平居中
+                halign: "center",//垂直居中
+                field: 'q_classify',
+                width: 100
+            },
+            {
+                title: '试题内容',
+                align: "center",//水平居中
+                halign: "center",//垂直居中
+                field: 'q_content',
+
+            },
+            {
+                title: '添加时间',
+                align: "center",//水平居中
+                halign: "center",//垂直居中
+                field: 'q_createTime',
+                width: 100
+            }
+            ,
             {
                 title: '操作',
                 // field:'createTime', //和后台pojo属性进行对应
@@ -68,7 +98,7 @@ function load() {
                 width: '150px',//设置列宽
                 formatter: function (value, row, index) {
                     //如果将来 涉及到字符串数据传入参数  需要设置单引号
-                    let d = '<a href="javascript:void(0);" onclick="removeData(\'' + row.q_id + '\')">删除</a>'
+                    let d = '<a href="javascript:void(0);" onclick="addData(\'' + row.q_id + '\')">添加</a>'
                     return d
                 }
             }
@@ -84,40 +114,43 @@ function load() {
             for (let i = 0; i < rows.length; i++) {
                 q_idAll.push(rows[i].q_id)
             }
-            localStorage.setItem("qusetionbankAll",q_idAll)
-            localStorage.removeItem("questionbank")
-           // console.log(localStorage.getItem("qusetionbankAll"))
+            localStorage.setItem("singleChoiceAll",q_idAll)
+            localStorage.removeItem("singleChoice")
+             //console.log(localStorage.getItem("singleChoiceAll"))
 
         },
         onCheck:function(row){
             //console.log(row.q_id)
             q_id.push(row.q_id)
             //console.log(q_id)
-            var q_idLocal=localStorage.setItem("questionbank",q_id)
-            localStorage.removeItem("qusetionbankAll")
-            //console.log(localStorage.getItem("questionbank"))
+            var q_idLocal=localStorage.setItem("singleChoice",q_id)
+            localStorage.removeItem("singleChoiceAll")
+            //console.log(localStorage.getItem("singleChoice"))
         },
         onUncheck:function(row){
             var a=q_id.indexOf(row.q_id);
             q_id.splice(a,1);
-            var q_idLocal=localStorage.setItem("questionbank",q_id)
-            //console.log(localStorage.getItem("questionbank"))
+            var q_idLocal=localStorage.setItem("singleChoice",q_id)
+            //console.log(localStorage.getItem("singleChoice"))
         },
         onUncheckAll:function (rows) {
             q_idAll.splice(0);
-            localStorage.setItem("qusetionbankAll",q_idAll)
-            //console.log(localStorage.getItem("qusetionbankAll"))
+            localStorage.setItem("singleChoiceAll",q_idAll)
+            //console.log(localStorage.getItem("singleChoiceAll"))
         }
     })
+
+
 }
 
-function removeData(q_id) {
+function addData(q_id) {
+    var item1 = localStorage.getItem("Tid");
     console.log(q_id)
     if (q_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/deleteTopic"
+        let url = "http://localhost:8080/exam_zeroone_ssm/addTopicToTestPaper"
         var dataJSON = {};
-
         dataJSON.q_id = q_id;
+        dataJSON.t_id = item1;
         console.log(dataJSON)
         $.ajax({
             url: url,
@@ -129,9 +162,10 @@ function removeData(q_id) {
                 //将返回的result数据，渲染到页面上
                 if (result.mark == 1) {
                     //删除成功-->重新渲染表格的数据
+                    alert("添加成功")
                     reLoad()
                 } else {
-                    alert("删除失败");
+                    alert("添加失败");
                 }
             },
             error: function (result) {
@@ -139,12 +173,6 @@ function removeData(q_id) {
         })
 
     } else {
-        alert("数据有问题！无法删除");
+        alert("数据有问题！无法添加");
     }
 }
-
-
-
-
-
-

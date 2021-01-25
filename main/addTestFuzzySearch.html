@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>题库管理</title>
+<title>简答题库管理</title>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -22,13 +22,13 @@
   <form class="layui-form x-center" action="" style="width:85%">
     <div class="layui-form-pane">
       <div class="layui-form-item">
-        <a href="singleChoice.html" class="layui-form-label" style="width: 100px">选择题</a>
-        <a href="briefAnswer.html" class="layui-form-label" style="width: 100px">简答题</a>
+        <a href="addTestSingleChoice.html" class="layui-form-label" style="width: 100px">选择题</a>
+        <a href="addTestBriefAnswer.html" class="layui-form-label" style="width: 100px">简答题</a>
         <div class="layui-input-inline" style="width:200px;padding-left: 300px">
           <input type="text" name="link"  placeholder="搜索" autocomplete="off" class="layui-input" style="width: 200px">
         </div>
         <div class="layui-input-inline" style="width:80px;padding-left: 200px">
-          <a href="fuzzySearch.html" class="layui-btn">搜索</a>
+          <a href="addTestFuzzySearch.html" class="layui-btn">搜索</a>
         </div>
       </div>
     </div>
@@ -36,8 +36,7 @@
   
   <div class="tools">
     <ul class="toolbar">
-      <li id="deleteQuestion"><span><img src="images/t03.png" /></span>删除所选试题</li>
-      <li onclick="user_management_add('添加试题','addTopic.html','1000','600')"><span><img src="images/t01.png" /></span>添加试题</li>
+      <li id="addBriefAnswer"><span><img src="images/t01.png" /></span>添加搜索的题目</li>
     </ul>
 <!--    <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>-->
   </div>
@@ -67,56 +66,55 @@
 </script>
 <script>
   $(".layui-btn").click(function () {
-     var content=$(".layui-input").val()
+    var content=$(".layui-input").val()
     localStorage.setItem("q_content",content);
   })
-  $("#deleteQuestion").click(function () {
-      var q_id=localStorage.getItem("questionbank")
-      var q_idAll=localStorage.getItem("qusetionbankAll");
-
-      console.log(q_idAll);
-      if (q_idAll!=null){
-        var jsonData= {}
-        jsonData.idList=q_idAll;
-        console.log(jsonData)
-        $.ajax({
-          url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
-          type: "post",
-          data: jsonData,
-          dataType: "json",
-            success:function (result) {
-              if (result.mark == 1) {
-                alert("删除成功");
-                window.location.href = "tiku.html";
-              } else {
-                alert("删除失败");
-                window.location.href = "tiku.html";
-            }
+  $("#addBriefAnswer").click(function () {
+    var q_id=localStorage.getItem("fuzzySearch")
+    var q_idAll=localStorage.getItem("fuzzySearchAll");
+    var item1 = localStorage.getItem("Tid");
+    console.log(item1)
+    if (q_idAll!=null){
+      var jsonData= {}
+      jsonData.idList=q_idAll;
+      jsonData.t_id=item1;
+      console.log(jsonData)
+      $.ajax({
+        url: "http://localhost:8080/exam_zeroone_ssm/addTopicToTestPaperBybatch",
+        type: "post",
+        data: jsonData,
+        dataType: "json",
+        success:function (result) {
+          if (result.mark == 1) {
+            alert("添加成功");
+            window.location.href = "addTestFuzzySearch.html";
+          } else {
+            alert("添加失败");
+            window.location.href = "addTestFuzzySearch.html";
           }
-        });
-
-      }else {
-        console.log(q_id)
-        var jsonData= {}
-        jsonData.idList=q_id;
-        $.ajax({
-          url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
-          type: "post",
-          data: jsonData,
-          dataType: "json",
-          success:function (result) {
-            if (result.mark == 1) {
-              alert("删除成功");
-              window.location.href = "tiku.html";
-            } else {
-              alert("删除失败");
-              window.location.href = "tiku.html";
-            }
+        }
+      });
+    }else {
+      console.log(q_id)
+      var jsonData= {}
+      jsonData.idList=q_id;
+      jsonData.t_id=item1;
+      $.ajax({
+        url: "http://localhost:8080/exam_zeroone_ssm/addTopicToTestPaperBybatch",
+        type: "post",
+        data: jsonData,
+        dataType: "json",
+        success:function (result) {
+          if (result.mark == 1) {
+            alert("添加成功");
+            window.location.href = "addTestFuzzySearch.html";
+          } else {
+            alert("添加失败");
+            window.location.href = "addTestFuzzySearch.html";
           }
-        })
-      }
-
-
+        }
+      })
+    }
   })
 </script>
 <script src="../bootstrap-table/js/bootstrap-table/bootstrap-table.min.js"></script>
@@ -124,5 +122,5 @@
 <script src="../js/layer.js"></script>
 <script src="./js/x-layui.js" charset="utf-8"></script>
 
-<script src="../bootstrap-table/js/tikuTable.js"></script>
+<script src="../bootstrap-table/js/addFuzzySearchTable.js"></script>
 </html>

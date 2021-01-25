@@ -19,25 +19,11 @@
 <body>
 <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>题库管理</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
 <div class="x-body">
-  <form class="layui-form x-center" action="" style="width:85%">
-    <div class="layui-form-pane">
-      <div class="layui-form-item">
-        <a href="singleChoice.html" class="layui-form-label" style="width: 100px">选择题</a>
-        <a href="briefAnswer.html" class="layui-form-label" style="width: 100px">简答题</a>
-        <div class="layui-input-inline" style="width:200px;padding-left: 300px">
-          <input type="text" name="link"  placeholder="搜索" autocomplete="off" class="layui-input" style="width: 200px">
-        </div>
-        <div class="layui-input-inline" style="width:80px;padding-left: 200px">
-          <a href="fuzzySearch.html" class="layui-btn">搜索</a>
-        </div>
-      </div>
-    </div>
-  </form>
-  
+
   <div class="tools">
     <ul class="toolbar">
       <li id="deleteQuestion"><span><img src="images/t03.png" /></span>删除所选试题</li>
-      <li onclick="user_management_add('添加试题','addTopic.html','1000','600')"><span><img src="images/t01.png" /></span>添加试题</li>
+      <li onclick="user_management_add('添加试题','addTestQuestionBank.html','1000','600')"><span><img src="images/t01.png" /></span>添加试题</li>
     </ul>
 <!--    <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>-->
   </div>
@@ -125,5 +111,5 @@
 <script src="../js/layer.js"></script>
 <script src="./js/x-layui.js" charset="utf-8"></script>
 
-<script src="../bootstrap-table/js/btTable4.js"></script>
+<script src="../bootstrap-table/js/updateTestQuestionBankTable.js"></script>
 </html>

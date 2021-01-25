@@ -25,7 +25,7 @@ function load() {
         pageNumber: 1,//初始化加载第一页
         pagination: true,//是否分页
         sidePagination: 'server',
-        pageSize: 2,//每页记录数
+        pageSize: 15,//每页记录数
         method: 'POST',
         queryParams: function (params) {
             var paramsJSON = {
