@@ -109,7 +109,7 @@ function load() {
 function openTestPaper(t_id) {
     console.log(t_id);
     if (t_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/deleteTestPaper"
+        let url = "http://localhost:8080/exam_zeroone_ssm/openTestPaper"
         var dataJSON = {};
         dataJSON.t_id = t_id;
         console.log(dataJSON)

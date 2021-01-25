@@ -38,24 +38,24 @@ function load() {
             return JSON.stringify(paramsJSON)
         },
         columns: [
+
             {
-                field : 'checked',
-                checkbox: true,
-                align: 'center',
-                valign: 'middle',
-                formatter: function (value, row, index) {
-                    return index+1;
+                title: "<input type='checkbox' class='selectAllTestAnswer' onclick='selectAllTestAnswer()'/>全选",
+                align:"center",
+                halign:"center",
+                formatter:function (value,row,index){
+                    return "<input type='checkbox' class='deleteTestAnswer' value='"+row.tq_id+"'/>"+(index+1);
                 }
             },
             {
                 title: "试题详情",
-                align:"center",
+                //align:"center",
                 halign:"center",
                 formatter:function (value,row,index){
                     if (row.tq_type==="单选题"){
-                        return "<p>["+row.tq_Type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p class='singel'>A、"+row.tq_a+"</p><p class='singel'>B、"+row.tq_b+"</p><p class='singel'>C、"+row.tq_c+"</p><p class='singel'>D、"+tq_d+"</p><p>正确答案："+row.tq_answer+"</p>"
+                        return "<p>["+row.tq_type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p class='singel'>A、"+row.tq_a+"</p><p class='singel'>B、"+row.tq_b+"</p><p class='singel'>C、"+row.tq_c+"</p><p class='singel'>D、"+row.tq_d+"</p><p>正确答案："+row.tq_answer+"</p>"
                     }else if (row.tq_type==="简答题"){
-                        return "<p>["+row.tq_Type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p>正确答案："+row.tq_answer+"</p>"
+                        return "<p>["+row.tq_type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p>正确答案："+row.tq_answer+"</p>"
                     }
                 }
 
