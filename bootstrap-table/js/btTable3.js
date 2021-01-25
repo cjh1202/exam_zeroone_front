@@ -14,6 +14,8 @@ function load() {
     var item = localStorage.getItem("user");
     var user = JSON.parse(item);
     var q_content = localStorage.getItem("q_content");
+    var q_id=[]
+    var q_idAll=[]
 
     $("#table1").bootstrapTable({
         url: "http://localhost:8080/exam_zeroone_ssm/fuzzySearch",
@@ -36,6 +38,15 @@ function load() {
         },
 
         columns: [
+            {
+                field : 'checked',
+                checkbox: true,
+                align: 'center',
+                valign: 'middle',
+                formatter: function (value, row, index) {
+                    return index+1;
+                }
+            },
             {
                 title: '行号',
                 align: "center",//水平居中
@@ -95,7 +106,42 @@ function load() {
                     return d + " " + m + " "
                 }
             }
-        ]
+        ],
+        onClickRow : function(row, tr,flied){
+            // 书写自己的方法
+            //console.log(row);
+            console.log(tr);
+            console.log(flied)
+            //
+        },
+        onCheckAll:function(rows){
+            for (let i = 0; i < rows.length; i++) {
+                q_idAll.push(rows[i].q_id)
+            }
+            localStorage.setItem("fuzzySearchAll",q_idAll)
+            localStorage.removeItem("fuzzySearch")
+            console.log(localStorage.getItem("fuzzySearchAll"))
+
+        },
+        onCheck:function(row){
+            //console.log(row.q_id)
+            q_id.push(row.q_id)
+            //console.log(q_id)
+            localStorage.setItem("fuzzySearch",q_id)
+            localStorage.removeItem("fuzzySearchAll")
+            //console.log(localStorage.getItem("fuzzySearch")+1)
+        },
+        onUncheck:function(row){
+            var a=q_id.indexOf(row.q_id);
+            q_id.splice(a,1);
+            localStorage.setItem("fuzzySearch",q_id)
+            //console.log(localStorage.getItem("fuzzySearch"))
+        },
+        onUncheckAll:function (rows) {
+            q_idAll.splice(0);
+            localStorage.setItem("fuzzySearchAll",q_idAll)
+            //console.log(localStorage.getItem("fuzzySearchAll"))
+        }
     })
 
 

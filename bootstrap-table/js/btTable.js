@@ -34,7 +34,6 @@ function load() {
 
             return JSON.stringify(paramsJSON)
         },
-
         columns: [
             {
                 field : 'checked',

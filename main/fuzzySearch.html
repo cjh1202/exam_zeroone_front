@@ -36,7 +36,7 @@
   
   <div class="tools">
     <ul class="toolbar">
-      <li><span><img src="images/t03.png" /></span>批量删除</li>
+      <li id="delFuzzySearch"><span><img src="images/t03.png" /></span>删除查询试题</li>
       <li onclick="user_management_add('添加试题','addTopic.html','1000','600')"><span><img src="images/t01.png" /></span>添加试题</li>
     </ul>
 <!--    <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>-->
@@ -69,6 +69,52 @@
   $(".layui-btn").click(function () {
     var content=$(".layui-input").val()
     localStorage.setItem("q_content",content);
+  })
+  $("#delFuzzySearch").click(function () {
+    var q_id=localStorage.getItem("fuzzySearch")
+    var q_idAll=localStorage.getItem("fuzzySearchAll");
+
+    console.log(q_idAll);
+    if (q_idAll!=null){
+      alert(111)
+      var jsonData= {}
+      jsonData.idList=q_idAll;
+      console.log(jsonData)
+      $.ajax({
+        url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
+        type: "post",
+        data: jsonData,
+        dataType: "json",
+        success:function (result) {
+          if (result.mark == 1) {
+            alert("删除成功");
+            window.location.href = "fuzzySearch.html";
+          } else {
+            alert("删除失败");
+            window.location.href = "fuzzySearch.html";
+          }
+        }
+      });
+    }else {
+      console.log(q_id)
+      var jsonData= {}
+      jsonData.idList=q_id;
+      $.ajax({
+        url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
+        type: "post",
+        data: jsonData,
+        dataType: "json",
+        success:function (result) {
+          if (result.mark == 1) {
+            alert("删除成功");
+            window.location.href = "fuzzySearch.html";
+          } else {
+            alert("删除失败");
+            window.location.href = "fuzzySearch.html";
+          }
+        }
+      })
+    }
   })
 </script>
 <script src="../bootstrap-table/js/bootstrap-table/bootstrap-table.min.js"></script>
