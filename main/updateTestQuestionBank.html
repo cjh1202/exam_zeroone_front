@@ -57,14 +57,13 @@
     localStorage.setItem("q_content",content);
   })
   $("#deleteQuestion").click(function () {
-      var q_id=localStorage.getItem("questionbank")
-      var q_idAll=localStorage.getItem("qusetionbankAll");
+      var tq_id=localStorage.getItem("testQusetionBank")
+      var tq_idAll=localStorage.getItem("testQusetionBankAll");
 
-      console.log(q_idAll);
-      if (q_idAll!=null){
-        alert(111)
+      console.log(tq_idAll);
+      if (tq_idAll!=null){
         var jsonData= {}
-        jsonData.idList=q_idAll;
+        jsonData.idList=tq_idAll;
         console.log(jsonData)
         $.ajax({
           url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
@@ -74,18 +73,18 @@
             success:function (result) {
               if (result.mark == 1) {
                 alert("删除成功");
-                window.location.href = "tiku.html";
+                window.location.href = "updateTestQuestionBank.html";
               } else {
                 alert("删除失败");
-                window.location.href = "tiku.html";
+                window.location.href = "updateTestQuestionBank.html";
             }
           }
         });
 
       }else {
-        console.log(q_id)
+        console.log(tq_id)
         var jsonData= {}
-        jsonData.idList=q_id;
+        jsonData.idList=tq_id;
         $.ajax({
           url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
           type: "post",
@@ -94,10 +93,10 @@
           success:function (result) {
             if (result.mark == 1) {
               alert("删除成功");
-              window.location.href = "tiku.html";
+              window.location.href = "updateTestQuestionBank.html";
             } else {
               alert("删除失败");
-              window.location.href = "tiku.html";
+              window.location.href = "updateTestQuestionBank.html";
             }
           }
         })

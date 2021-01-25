@@ -120,13 +120,13 @@ function load() {
     })
 }
 
-function removeData(q_id) {
-    console.log(q_id)
-    if (q_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/deleteTopic"
+function removeData(tq_id) {
+    console.log(tq_id)
+    if (tq_id) {
+        let url = "http://localhost:8080/exam_zeroone_ssm/deleteTopicFromTestPaper"
         var dataJSON = {};
 
-        dataJSON.q_id = q_id;
+        dataJSON.tq_id = tq_id;
         console.log(dataJSON)
         $.ajax({
             url: url,
