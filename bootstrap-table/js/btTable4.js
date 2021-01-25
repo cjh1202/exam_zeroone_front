@@ -64,29 +64,29 @@ function load() {
             {
                 title: '题目类型',
                 align: "center",//水平居中
-                halign: "center",//垂直居中
-                field: 'q_type',
+                halign: "center",//垂直居中t
+                field: 'tq_type',
                 width: 100
             },
             {
                 title: '试题分类',
                 align: "center",//水平居中
                 halign: "center",//垂直居中
-                field: 'q_classify',
+                field: 'tq_classify',
                 width: 100
             },
             {
                 title: '试题内容',
                 align: "center",//水平居中
                 halign: "center",//垂直居中
-                field: 'q_content',
+                field: 'tq_content',
 
             },
             {
                 title: '添加时间',
                 align: "center",//水平居中
                 halign: "center",//垂直居中
-                field: 'q_createTime',
+                field: 'tq_createTime',
                 width: 100
             },
             {
