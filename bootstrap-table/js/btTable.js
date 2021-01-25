@@ -13,7 +13,8 @@ function load() {
     var jsondata = {};
     var item = localStorage.getItem("user");
     var user = JSON.parse(item);
-
+    var q_id=[]
+    var q_idAll=[]
 
     $("#table1").bootstrapTable({
         url: "http://localhost:8080/exam_zeroone_ssm/findAllQuestionBank",
@@ -22,7 +23,7 @@ function load() {
         pageNumber: 1,//初始化加载第一页
         pagination: true,//是否分页
         sidePagination: 'server',
-        pageSize: 2,//每页记录数
+        pageSize:15,//每页记录数
         method: 'POST',
         queryParams: function (params) {
             var paramsJSON = {
@@ -35,6 +36,15 @@ function load() {
         },
 
         columns: [
+            {
+                field : 'checked',
+                checkbox: true,
+                align: 'center',
+                valign: 'middle',
+                formatter: function (value, row, index) {
+                    return index+1;
+                }
+            },
             {
                 title: '行号',
                 align: "center",//水平居中
@@ -76,8 +86,7 @@ function load() {
                 halign: "center",//垂直居中
                 field: 'q_createTime',
                 width: 100
-            }
-            ,
+            },
             {
                 title: '操作',
                 // field:'createTime', //和后台pojo属性进行对应
@@ -94,10 +103,43 @@ function load() {
                     return d + " " + m + " "
                 }
             }
-        ]
+        ],
+        onClickRow : function(row, tr,flied){
+            // 书写自己的方法
+            //console.log(row);
+            console.log(tr);
+            console.log(flied)
+            //
+        },
+        onCheckAll:function(rows){
+            for (let i = 0; i < rows.length; i++) {
+                q_idAll.push(rows[i].q_id)
+            }
+            localStorage.setItem("qusetionbankAll",q_idAll)
+            localStorage.removeItem("questionbank")
+           // console.log(localStorage.getItem("qusetionbankAll"))
+
+        },
+        onCheck:function(row){
+            //console.log(row.q_id)
+            q_id.push(row.q_id)
+            //console.log(q_id)
+            var q_idLocal=localStorage.setItem("questionbank",q_id)
+            localStorage.removeItem("qusetionbankAll")
+            //console.log(localStorage.getItem("questionbank"))
+        },
+        onUncheck:function(row){
+            var a=q_id.indexOf(row.q_id);
+            q_id.splice(a,1);
+            var q_idLocal=localStorage.setItem("questionbank",q_id)
+            //console.log(localStorage.getItem("questionbank"))
+        },
+        onUncheckAll:function (rows) {
+            q_idAll.splice(0);
+            localStorage.setItem("qusetionbankAll",q_idAll)
+            //console.log(localStorage.getItem("qusetionbankAll"))
+        }
     })
-
-
 }
 
 function removeData(q_id) {
