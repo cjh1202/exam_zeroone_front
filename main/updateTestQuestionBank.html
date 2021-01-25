@@ -66,7 +66,7 @@
         jsonData.idList=tq_idAll;
         console.log(jsonData)
         $.ajax({
-          url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
+          url: "http://localhost:8080/exam_zeroone_ssm/deleteTopicFromTestPaperByBach",
           type: "post",
           data: jsonData,
           dataType: "json",
@@ -86,7 +86,7 @@
         var jsonData= {}
         jsonData.idList=tq_id;
         $.ajax({
-          url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
+          url: "http://localhost:8080/exam_zeroone_ssm/deleteTopicFromTestPaper",
           type: "post",
           data: jsonData,
           dataType: "json",

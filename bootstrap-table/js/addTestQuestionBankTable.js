@@ -17,7 +17,7 @@ function load() {
     var q_idAll=[]
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/findAllQuestionBank",
+        url: "http://localhost:8080/exam_zeroone_ssm/findAllQuestionBank1",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
