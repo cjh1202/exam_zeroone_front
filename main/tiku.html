@@ -74,8 +74,9 @@
       var q_id=localStorage.getItem("questionbank")
       var q_idAll=localStorage.getItem("qusetionbankAll")
       if (q_idAll!=null){
+        console.log(q_idAll)
         var jsonData= {}
-        jsonData.q_id=q_idAll;
+        jsonData.idList=q_idAll;
         $.ajax({
           url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
           type: "post",
@@ -93,8 +94,9 @@
         })
 
       }else {
+        console.log(q_id)
         var jsonData= {}
-        jsonData.q_id=q_id;
+        jsonData.idList=q_id;
         $.ajax({
           url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
           type: "post",
