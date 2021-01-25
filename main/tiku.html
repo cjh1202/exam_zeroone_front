@@ -72,11 +72,14 @@
   })
   $("#deleteQuestion").click(function () {
       var q_id=localStorage.getItem("questionbank")
-      var q_idAll=localStorage.getItem("qusetionbankAll")
+      var q_idAll=localStorage.getItem("qusetionbankAll");
+
+      console.log(q_idAll);
       if (q_idAll!=null){
-        console.log(q_idAll)
+        alert(111)
         var jsonData= {}
         jsonData.idList=q_idAll;
+        console.log(jsonData)
         $.ajax({
           url: "http://localhost:8080/exam_zeroone_ssm/batchDelete",
           type: "post",
@@ -85,13 +88,13 @@
             success:function (result) {
               if (result.mark == 1) {
                 alert("删除成功");
-                window.location.href = "index.html";
+                window.location.href = "tiku.html";
               } else {
                 alert("删除失败");
-                window.location.href = "index.html";
+                window.location.href = "tiku.html";
             }
           }
-        })
+        });
 
       }else {
         console.log(q_id)
