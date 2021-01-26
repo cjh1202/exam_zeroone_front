@@ -37,7 +37,7 @@
 			<h2 class="left">天亮在线考试系统</h2>
 		</div>
 		<div class="headR">
-	    <a href="../UserLogin.html" target="_parent">【退出】</a>
+	    <a href="../UserLogin.html" target="_parent" id="exit">【退出】</a>
 		</div>
 	</div>
     <div class="user">
@@ -45,5 +45,11 @@
     </div> 
     
 </body>
+<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+<script>
+	$("#exit").click(function (){
+		localStorage.removeItem("user");
+	})
+</script>
 
 </html>

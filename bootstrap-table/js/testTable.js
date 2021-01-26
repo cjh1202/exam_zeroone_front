@@ -96,14 +96,19 @@ function load() {
                         +'\')">修改试卷</a>'
                     let s='<a href="javascript:void(0);" onclick="openTestPaper(\''+row.t_id+'\')">开启试卷</a>'
                     let n='<a href="javascript:void(0);" onclick="updateTest(\''+row.t_id+'\')">编辑试卷</a>'
-
-                    return d + " " + m + " "+ s+" "+n
+                    let z='<a href="javascript:void(0);" onclick="startTest(\''+row.t_id+'\')">开始考试</a>'
+                    return d + " " + m + " "+ s+" "+n+" "+z
                 }
             }
         ]
     })
 
 
+}
+
+function startTest(t_id) {
+    localStorage.setItem("t_id",t_id);
+    window.location.href="../main/testPaperURL.html"
 }
 
 function openTestPaper(t_id) {
@@ -137,20 +142,20 @@ function openTestPaper(t_id) {
     }
 }
 function removeData(t_id) {
-    console.log(t_id)
+    //console.log(t_id)
     if (t_id) {
         let url = "http://localhost:8080/exam_zeroone_ssm/deleteTestPaper"
         var dataJSON = {};
 
         dataJSON.t_id = t_id;
-        console.log(dataJSON)
+       // console.log(dataJSON)
         $.ajax({
             url: url,
             data: dataJSON,
             dataType: 'json',
             type: 'POST',
             success: function (result) {
-                console.log(result.mark)
+               // console.log(result.mark)
                 //将返回的result数据，渲染到页面上
                 if (result.mark == 1) {
                     //删除成功-->重新渲染表格的数据
@@ -169,18 +174,14 @@ function removeData(t_id) {
 }
 
 function updateTest(t_id) {
-    console.log(t_id)
+   // console.log(t_id)
     localStorage.setItem("Tid",t_id);
     window.location.href="updateTestQuestionBank.html";
 }
 
 function modifyTest(t_id,t_classify,t_title,t_startTime,t_endTime) {
 
-    /* console.log(t_id);
-     console.log(t_classify);
-     console.log(t_title);
-     console.log(t_startTime);
-     console.log(t_endTime);*/
+
     localStorage.setItem("t_id",t_id);
     layer.open({
         type:2,//可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/TeacherPersonalInfo.css">
+    <script src="../js/public.js"></script>
+</head>
+<body>
+<div class="container flgure">
+    <div class="content">
+        <ul class="clearfix info">
+            <li class="active">试卷</li>
+        </ul>
+        <div class="basic">
+            <div class="select active">
+                <p>
+                    <!--<span style="margin-left: 20px" id="saveTestPaper">保存</span>-->
+                </p>
+                <div class="left fl">
+                    <div>
+                        <span>试卷链接</span>
+                        <textarea rows="2px" cols="39px" name="title" id="testURL"></textarea>
+                    </div>
+                    <div>
+                        <span>试卷邀请码</span>
+                        <textarea rows="2px" cols="30px" name="title" id="testCheckNumber"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+<script src=""></script>
+<script>
+    $(function (){
+        let t_id = localStorage.getItem("t_id");
+       // console.log(t_id);
+
+        $.ajax({
+            type:"post",
+            url:"http://localhost:8080/exam_zeroone_ssm/findTestPaperURl?t_id="+t_id,
+            dataType:"json",
+            success:function (testPaper){
+                if(testPaper!=null){
+     //               console.log(testPaper)
+                    $("#testURL").text(testPaper.t_url)
+                    $("#testCheckNumber").text(testPaper.t_checkNum)
+                }
+            }
+        })
+
+    })
+
+</script>
+
+
+
+
+
+</body>
+</html>
