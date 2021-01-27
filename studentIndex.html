@@ -84,7 +84,8 @@ $(document).ready(function () {
                 console.log(student)
                 if (student.stu_name!=null){
                     alert("登录成功");
-                    localStorage.setItem("student",student);
+                    var student1=JSON.stringify(student)
+                    localStorage.setItem("student",student1);
                     console.log(student);
                     window.location.href="main/beforeTest.html";
                 }else if(student.stu_name==null){
