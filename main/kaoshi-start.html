@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天亮教育在线考试系统</title>
+    <link rel="stylesheet" href="css/kaoshi.css">
+    <link rel="stylesheet" href="../css/layer-css/default/layer.css">
+</head>
+<body>
+    <div id="zhengge">
+        <div id="shiti">
+            <table id="kaoti"></table>
+        </div>
+        <button class="huanye" id="beforePage">上一页</button>
+        <button class="huanye" id="nextPage">下一页</button>
+    </div>
+</body>
+<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+<script src="../js/layer.js"></script>
+
+<script>
+    $("#beforePage").click(function () {
+        $("#nextPage").text("下一页")
+        var currentPage=Number(localStorage.getItem("currentPage"))-1;
+        var t_id = localStorage.getItem("t_id");
+
+
+        if (currentPage<1){
+            currentPage=1;
+            layer.msg("到达首页了",{time:1000});
+
+        }
+        // 手动关闭
+
+        var jsondata={}
+        jsondata.currentPage=currentPage.toString();
+        jsondata.t_id=t_id;
+        $.ajax({
+            type:"post",
+            url:"http://localhost:8080/exam_zeroone_ssm/selectExam",
+            data:jsondata,
+            dataType:"json",
+            success:function(pb){
+                $("#kaoti").html("");
+                var question=pb.list[0];
+                if(question.tq_type=="单选题"){
+                    var li = '<li>\n' +
+                        '                        <div class="text1">\n' +
+                        '                            <p>' + question.tq_content + '</p>\n' +
+                        '                            <br/>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="">\n' +
+                        '                            <p class="">\n' +
+                        '                                A选项   <span>'+question.tq_a+'</span>\n' +
+                        '                            </p>\n' +
+                        '                            <p class="">\n' +
+                        '                                B选项   <span>'+question.tq_b+'</span>\n' +
+                        '                            </p>\n' +
+                        '                            <p class="">\n' +
+                        '                                C选项   <span>'+question.tq_c+'</span>\n' +
+                        '                            </p>\n' +
+                        '                            <p class="">\n' +
+                        '                                D选项   <span>'+question.tq_d+'</span>\n' +
+                        '                            </p>\n' +
+                        '                            你的答案  <textarea name="answer" id="answer" ></textarea>\n' +
+                        '                        </div>\n' +
+                        '                    </li>';
+                }else if (question.tq_type=="简答题"){
+                    var li = '<li>\n' +
+                        '                        <div class="text1">\n' +
+                        '                            <p>' + question.tq_content + '</p>\n' +
+                        '                            <br/>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="">\n' +
+                        '                            你的答案 <textarea name="answer" id="answer" ></textarea>\n'+
+                        '                        </div>\n' +
+                        '                    </li>';
+                }
+                //追加到table中
+                $("#kaoti").append(li);
+
+                var a = JSON.parse(localStorage.getItem("answers"));
+                $("#answer").val(a[currentPage]);
+                localStorage.setItem("totalPage",pb.totalPage)
+                // currentPage=currentPage+1;
+                localStorage.setItem("currentPage",currentPage)
+                localStorage.setItem("tq_id",question.tq_id)
+                localStorage.setItem("tq_type",question.tq_type)
+            }
+        })
+    })
+    $("#nextPage").click(function () {
+        var t_id = localStorage.getItem("t_id");
+        var currentPage=Number(localStorage.getItem("currentPage"))+1
+        var totalPage=Number(localStorage.getItem("totalPage"));
+        var student= localStorage.getItem("student");
+        var student1=JSON.parse(student)
+        console.log(student1.stu_id)
+        var tq_id=localStorage.getItem("tq_id");
+        console.log(tq_id)
+        var tq_type=localStorage.getItem("tq_type");
+        console.log(tq_type)
+        var answer=$("#answer").val();
+        var answers = JSON.parse(localStorage.getItem("answers"))
+        answers[currentPage-1]=answer;
+        localStorage.setItem("answers",JSON.stringify(answers))
+        if (currentPage==totalPage+1){
+            alert("考试结束")
+        }
+        if (currentPage==totalPage){
+            $("#nextPage").text("提交")
+
+            var jsondata={};
+            jsondata.t_id=t_id;
+            jsondata.tq_id=tq_id;
+            jsondata.sa_type=tq_type;
+            jsondata.stu_id=student1.stu_id;
+            jsondata.sa_answer=answer
+
+            $.ajax({
+                url: "http://localhost:8080/exam_zeroone_ssm/regist",
+                type: "post",
+                data: JSON.stringify(jsondata),
+                contentType: "application/json",
+                dataType: "json",
+                success:function (result){
+                    if (result.mark==1){
+                        alert("注册成功");
+                        window.location.href="UserLogin.html";
+                    }else{
+                        alert("注册失败");
+                        window.location.href="UserRegister.html";
+                    }
+                }
+            })
+
+        }else{
+
+            var jsondata={};
+            var jsonData={};
+            jsonData.currentPage=currentPage.toString();
+            jsonData.t_id=t_id;
+            jsondata.t_id=t_id;
+            jsondata.tq_id=tq_id;
+            jsondata.sa_type=tq_type;
+            jsondata.stu_id=student1.stu_id;
+            jsondata.sa_answer=answer
+            $.ajax({
+                url: "http://localhost:8080/exam_zeroone_ssm/regist",
+                type: "post",
+                data: JSON.stringify(jsondata),
+                contentType: "application/json",
+                dataType: "json",
+                success:function (result){
+                    $.ajax({
+                        type:"post",
+                        url:"http://localhost:8080/exam_zeroone_ssm/selectExam",
+                        data:jsonData,
+                        dataType:"json",
+                        success:function(pb){
+                            $("#kaoti").html("");
+                            var question=pb.list[0];
+                            if(question.tq_type=="单选题"){
+                                var li = '<li>\n' +
+                                    '                        <div class="text1">\n' +
+                                    '                            <p>' + question.tq_content + '</p>\n' +
+                                    '                            <br/>\n' +
+                                    '                        </div>\n' +
+                                    '                        <div class="">\n' +
+                                    '                            <p class="">\n' +
+                                    '                                A选项   <span>'+question.tq_a+'</span>\n' +
+                                    '                            </p>\n' +
+                                    '                            <p class="">\n' +
+                                    '                                B选项   <span>'+question.tq_b+'</span>\n' +
+                                    '                            </p>\n' +
+                                    '                            <p class="">\n' +
+                                    '                                C选项   <span>'+question.tq_c+'</span>\n' +
+                                    '                            </p>\n' +
+                                    '                            <p class="">\n' +
+                                    '                                D选项   <span>'+question.tq_d+'</span>\n' +
+                                    '                            </p>\n' +
+                                    '                            你的答案  <textarea name="answer" id="answer" ></textarea>\n' +
+                                    '                        </div>\n' +
+                                    '                    </li>';
+                            }else if (question.tq_type=="简答题"){
+                                var li = '<li>\n' +
+                                    '                        <div class="text1">\n' +
+                                    '                            <p>' + question.tq_content + '</p>\n' +
+                                    '                            <br/>\n' +
+                                    '                        </div>\n' +
+                                    '                        <div class="">\n' +
+                                    '                            你的答案 <textarea name="answer" id="answer" ></textarea>\n'+
+                                    '                        </div>\n' +
+                                    '                    </li>';
+                            }
+                            //追加到table中
+                            $("#kaoti").append(li);
+                            var a = JSON.parse(localStorage.getItem("answers"));
+                            $("#answer").val(a[currentPage]);
+                            localStorage.setItem("totalPage",pb.totalPage)
+                            // currentPage=currentPage+1;
+                            localStorage.setItem("currentPage",currentPage)
+                            localStorage.setItem("tq_id",question.tq_id)
+                            localStorage.setItem("tq_type",question.tq_type)
+                        }
+                    })
+                }
+            })
+
+        }
+
+
+
+    })
+    window.onload=function () {
+        var answers=new Array();
+        localStorage.setItem("answers",JSON.stringify(answers))
+        var currentPage=1
+        var t_id = localStorage.getItem("t_id");
+        var jsondata={}
+        jsondata.currentPage="1";
+        jsondata.t_id=t_id;
+        $.ajax({
+            type:"post",
+            url:"http://localhost:8080/exam_zeroone_ssm/selectExam",
+            data:jsondata,
+            dataType:"json",
+            success:function(pb){
+
+                var question=pb.list[0];
+                if(question.tq_type=="单选题"){
+                    var li = '<li>\n' +
+                        '                        <div class="text1">\n' +
+                        '                            <p>' + question.tq_content + '</p>\n' +
+                        '                            <br/>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="">\n' +
+                        '                            <p class="">\n' +
+                        '                                A选项   <span>'+question.tq_a+'</span>\n' +
+                        '                            </p>\n' +
+                        '                            <p class="">\n' +
+                        '                                B选项   <span>'+question.tq_b+'</span>\n' +
+                        '                            </p>\n' +
+                        '                            <p class="">\n' +
+                        '                                C选项   <span>'+question.tq_c+'</span>\n' +
+                        '                            </p>\n' +
+                        '                            <p class="">\n' +
+                        '                                D选项   <span>'+question.tq_d+'</span>\n' +
+                        '                            </p>\n' +
+                        '                            你的答案  <textarea name="answer" id="answer" ></textarea>\n' +
+                        '                        </div>\n' +
+                        '                    </li>';
+                }else if (question.tq_type=="简答题"){
+                    var li = '<li>\n' +
+                        '                        <div class="text1">\n' +
+                        '                            <p>' + question.tq_content + '</p>\n' +
+                        '                            <br/>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="">\n' +
+                        '                            你的答案 <textarea name="answer" id="answer" ></textarea>\n'+
+                        '                        </div>\n' +
+                        '                    </li>';
+                }
+                //追加到table中
+                $("#kaoti").append(li);
+                var a = JSON.parse(localStorage.getItem("answers"));
+                    $("#answer").val(a[currentPage]);
+                localStorage.setItem("totalPage",pb.totalPage)
+                // currentPage=currentPage+1;
+                localStorage.setItem("currentPage",currentPage)
+                localStorage.setItem("tq_id",question.tq_id)
+                localStorage.setItem("tq_type",question.tq_type)
+            }
+        })
+
+
+    }
+</script>
+</html>
