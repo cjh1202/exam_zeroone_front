@@ -13,8 +13,8 @@ function load() {
     var jsondata = {};
     var t_id = localStorage.getItem("t_id");
     var stu_id = localStorage.getItem("stu_id");
-    console.log(item1)
-    var user = JSON.parse(item);
+    console.log(stu_id);
+    console.log(t_id);
 
     $("#table1").bootstrapTable({
         url: "http://localhost:8080/exam_zeroone_ssm/testAndAnswer",
@@ -50,9 +50,9 @@ function load() {
                 halign:"center",
                 formatter:function (value,row,index){
                     if (row.tq_type==="单选题"){
-                        return "<p>["+row.tq_type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p class='singel'>A、"+row.tq_a+"</p><p class='singel'>B、"+row.tq_b+"</p><p class='singel'>C、"+row.tq_c+"</p><p class='singel'>D、"+row.tq_d+"</p><p>正确答案："+row.tq_answer+"</p><p>学生答案："+row.sa_answer+"</p><p>本题得分："+"["+row.tq_answer+"分]"+"</p>"
+                        return "<p>["+row.tq_type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p class='singel'>A、"+row.tq_a+"</p><p class='singel'>B、"+row.tq_b+"</p><p class='singel'>C、"+row.tq_c+"</p><p class='singel'>D、"+row.tq_d+"</p><p>正确答案："+row.tq_answer+"</p><p>学生答案："+row.sa_answer+"</p><p>本题得分："+"["+row.sa_score+"分]"+"</p>"
                     }else if (row.tq_type==="简答题"){
-                        return "<p>["+row.tq_type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p>正确答案："+row.tq_answer+"</p><p>学生答案："+row.sa_answer+"</p><p>本题得分："+"["+row.tq_answer+"分]"+"</p>"
+                        return "<p>["+row.tq_type+"]"+row.tq_content+"("+row.tq_score+"分)</p><p style='color: gray'>"+row.tq_classify+"</p><p>正确答案："+row.tq_answer+"</p><p>学生答案："+row.sa_answer+"</p><p>本题得分："+"["+row.sa_score+"分]"+"</p>"
                     }
                 }
 

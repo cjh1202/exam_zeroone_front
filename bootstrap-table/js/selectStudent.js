@@ -88,7 +88,7 @@ function load() {
                 width: '150px',//设置列宽
                 formatter: function (value, row, index) {
                     //如果将来 涉及到字符串数据传入参数  需要设置单引号
-                    let d = '<a href="javascript:void(0);" onclick="selectData(\'' + row.t_id + '\'+\'' + row.stu_id + '\')">查看详情</a>'
+                    let d = '<a href="javascript:void(0);" onclick="selectData(\'' + row.t_id + '\',\'' + row.stu_id + '\')">查看详情</a>'
                     return d
                 }
             }
@@ -98,8 +98,9 @@ function load() {
 
 }
 
-function startTest(t_id,stu_id) {
+function selectData(t_id,stu_id) {
+    console.log(stu_id);
     localStorage.setItem("t_id",t_id);
-    localStorage.setItem("stu_id",stu_id)
+    localStorage.setItem("stu_id",stu_id);
     window.location.href="../main/selectOneStudentScore.html"
 }
