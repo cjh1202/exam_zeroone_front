@@ -21,19 +21,22 @@
 
             let t_id = localStorage.getItem("t_id");
 
-
-            load(t_id,null);
+            var currentPage= "1"
+            load(t_id,currentPage);
 
 
 
 
 
         });
+        function fun1(){
+            alert(111)
+        }
 
-        function load(t_id, currentPage) {
+        function load(t_id , currentPage) {
             var jsondata={}
             jsondata.t_id=t_id
-            jsondata.currentPage=1;
+            jsondata.currentPage=currentPage;
 
             $.ajax({
                 type:"post",
@@ -48,26 +51,26 @@
                     $("#totalCount").text(pb.totalNum);
                     $("#totalPage").text(pb.totalPage);
 
-
-
                     var btns = "";
-
                     var beforeNum = pb.currentPage - 1;
                     if (beforeNum <= 0) {
                         beforeNum = 1;
                     }
-                    var beforePage = ' <button onclick="load('+t_id+',\''+beforeNum+'\')" class="threeword"><a href="javascript:void(0);">上一页</a></button>';
-
+                    var beforePage = ' <button onclick="load(\''+t_id+'\',\''+beforeNum+'\')" id="pre" class="threeword"><a onclick="fun1()" href="javascript:void(0);">上一页</a></button>';
                     btns += beforePage;
-
-
                     var nextNum = pb.currentPage + 1;
-                    if (nextNum >= pb.totalPage) {
+                  //  console.log(nextNum)
+                    var nextPage="";
+                    if (nextNum > pb.totalPage) {
                         nextNum = pb.totalPage;
+                        nextPage = '<button onclick="load(\''+t_id+'\',\''+nextNum+'\')"  class="threeword"><a  href="javascript:void(0);">提交</a></button>';
+                    }else if(pb.currentPage<pb.totalPage){
+                        nextPage = '<button onclick="load(\''+t_id+'\',\''+nextNum+'\')"  class="threeword"><a onclick="fun1()" href="javascript:void(0);">下一页</a></button>';
                     }
-                    var nextPage = '<button onclick="load('+t_id+',\''+nextNum+'\')" class="threeword" id="next"><a href="javascript:void(0);">下一页</a></button>';
+
 
                     btns += nextPage;
+                  //  console.log(btns)
 
                     //将lis的内容设置到ul中
                     $("#pageNum").html(btns);
@@ -129,11 +132,13 @@
                     <span id="totalPage">12</span>页<span id="totalCount">132</span>条
                 </div>
                 <div class="pageNum" id="pageNum">
+<!--
+                       <button id="pre"><a href="javascript:void(0);" >上一页</a></button>
 
-                       <button id="pre"><a href="javascript:;" >上一页</a></button>
-
-                       <button id="next"><a href="javascript:;" >上一页</a></button>
+                       <button id="next"><a href="javascript:void(0);" >上一页</a></button>-->
                 </div>
+
+
             </div>
 
         </div>
@@ -142,5 +147,9 @@
 
 
 </body>
+<script src="../js/jquery-3.5.1.js"></script>
+<script>
+
+</script>
 
 </html>
