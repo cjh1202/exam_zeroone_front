@@ -112,19 +112,19 @@ function startTest(t_id) {
 }
 
 function openTestPaper(t_id) {
-    console.log(t_id);
+  //  console.log(t_id);
     if (t_id) {
         let url = "http://localhost:8080/exam_zeroone_ssm/openTestPaper"
         var dataJSON = {};
         dataJSON.t_id = t_id;
-        console.log(dataJSON)
+   //     console.log(dataJSON)
         $.ajax({
             url: url,
             data: dataJSON,
             dataType: 'json',
             type: 'POST',
             success: function (result) {
-                console.log(result.mark)
+    //            console.log(result.mark)
                 //将返回的result数据，渲染到页面上
                 if (result.mark == 1) {
                     alert("试卷开启成功")
