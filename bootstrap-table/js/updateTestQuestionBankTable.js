@@ -19,7 +19,7 @@ function load() {
     var tq_idAll=[]
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/findAllTestQuestionBank",
+        url: "http://localhost:8080/exam_zeroone_ssm/testAndAnswer",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -38,16 +38,6 @@ function load() {
             return JSON.stringify(paramsJSON)
         },
         columns: [
-
-            {
-                field : 'checked',
-                checkbox: true,
-                align: 'center',
-                valign: 'middle',
-                formatter: function (value, row, index) {
-                    return index+1;
-                }
-            },
             {
                 title: '序号',
                 halign: "center",//垂直居中
@@ -57,7 +47,7 @@ function load() {
                 }
             },
             {
-                title: "试题详情",
+                title: "答题详情",
                 //align:"center",
                 halign:"center",
                 formatter:function (value,row,index){

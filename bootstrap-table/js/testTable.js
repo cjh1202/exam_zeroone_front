@@ -97,13 +97,18 @@ function load() {
                     let s='<a href="javascript:void(0);" onclick="openTestPaper(\''+row.t_id+'\')">开启试卷</a>'
                     let n='<a href="javascript:void(0);" onclick="updateTest(\''+row.t_id+'\')">编辑试卷</a>'
                     let z='<a href="javascript:void(0);" onclick="startTest(\''+row.t_id+'\')">开始考试</a>'
-                    return d + " " + m + " "+ s+" "+n+" "+z
+                    let v='<a href="javascript:void(0);" onclick="selectStudentScore(\''+row.t_id+'\')">查看学生成绩</a>'
+                    return d + " " + m + " "+ s+" "+n+" "+z+" "+v
                 }
             }
         ]
     })
 
 
+}
+function selectStudentScore(t_id){
+    localStorage.setItem("t_id",t_id)
+    window.location.href="../main/selectStudentScore.html"
 }
 
 function startTest(t_id) {
