@@ -72,10 +72,11 @@ function load() {
                 formatter: function (value, row, index) {
                     //如果将来 涉及到字符串数据传入参数  需要设置单引号
                     let d = '<a href="javascript:void(0);" onclick="removeData(\'' + row.u_id + '\')">删除用户</a>'
+                    let s=''
                     if (row.u_status==0){
-                        let s='<a href="javascript:void(0);" onclick="closeUser(\''+row.u_id+'\')">禁用用户</a>'
+                         s='<a href="javascript:void(0);" onclick="closeUser(\''+row.u_id+'\')">禁用用户</a>'
                     }else {
-                        let s='<a href="javascript:void(0);" onclick="openUser(\''+row.u_id+'\')">开启用户</a>'
+                         s='<a href="javascript:void(0);" onclick="openUser(\''+row.u_id+'\')">开启用户</a>'
                     }
                     return d + " " + s
                 }
@@ -131,10 +132,10 @@ function closeUser(u_id) {
                 //            console.log(result.mark)
                 //将返回的result数据，渲染到页面上
                 if (result.mark == 1) {
-                    alert("试卷开启成功")
+                    alert("用户关闭成功")
                     reLoad()
                 } else {
-                    alert("试卷开启失败");
+                    alert("用户关闭失败");
                 }
             },
             error: function (result) {
@@ -161,10 +162,10 @@ function openUser(u_id) {
                 //            console.log(result.mark)
                 //将返回的result数据，渲染到页面上
                 if (result.mark == 1) {
-                    alert("试卷开启成功")
+                    alert("用户开启成功")
                     reLoad()
                 } else {
-                    alert("试卷开启失败");
+                    alert("用户开启失败");
                 }
             },
             error: function (result) {
