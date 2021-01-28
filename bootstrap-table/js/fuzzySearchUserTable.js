@@ -10,7 +10,7 @@ function reLoad(){
 }
 
 function load() {
-    var m_username = localStorage.getItem("m_username");
+    var u_username = localStorage.getItem("u_username");
 
 
     $("#table1").bootstrapTable({
@@ -26,7 +26,7 @@ function load() {
             var paramsJSON = {
                 offset: params.offset,
                 pageNumber: params.limit,
-                m_username:m_username
+                u_username:u_username
             };
 
             return JSON.stringify(paramsJSON)
