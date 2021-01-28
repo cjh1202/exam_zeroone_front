@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>天亮教育在线考试系统后台管理</title>
+<link rel="stylesheet" type="text/css" href="css/public.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript" src="js/external.js"></script>
+	<style>
+		.left{
+			width: 201px;
+			height: 43px;
+			padding-top: 30px;
+			padding-left: 650px;
+			color: white;
+			font-size: 25px;
+			float: left;
+		}
+	</style>
+	<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+	<script type="">
+		$(function (){
+			var manager = localStorage.getItem("manager");
+			var manager1 = JSON.parse(manager);
+			if(manager1!=null){
+				$("#username").text(manager1.m_username)
+			}
+		})
+	</script>
+</head>
+
+<body>
+	<!-- 头部 -->
+	<div class="head">
+		<div class="headL">
+			<h2 class="left">天亮在线考试系统后台管理</h2>
+		</div>
+		<div class="headR">
+	    <a href="../UserLogin.html" target="_parent" id="exit">【退出】</a>
+		</div>
+	</div>
+    <div class="user">
+    <span id="username">admin</span>
+    </div> 
+    
+</body>
+<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+<script>
+	$("#exit").click(function (){
+		localStorage.removeItem("user");
+	})
+</script>
+
+</html>

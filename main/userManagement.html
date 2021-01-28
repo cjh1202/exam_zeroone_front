@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>题库管理</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="./css/x-admin.css" media="all">
+<link rel="stylesheet" href="css/pag.css" media="all">
+  <link rel="stylesheet" href="../css/layer-css/default/layer.css">
+  <link rel="stylesheet" href="../bootstrap-table/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bootstrap-table/css/bootstrap-table/bootstrap-table.min.css">
+
+</head>
+<body>
+<div class="x-body">
+  <form class="layui-form x-center" action="" style="width:85%">
+    <div class="layui-form-pane">
+      <div class="layui-form-item">
+        <div class="layui-input-inline" style="width:200px;padding-left: 300px">
+          <input type="text" name="link"  placeholder="搜索" autocomplete="off" class="layui-input" style="width: 200px">
+        </div>
+        <div class="layui-input-inline" style="width:80px;padding-left: 200px">
+          <a href="fuzzySearch.html" class="layui-btn">搜索</a>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <table id="table1"></table>
+
+</div>
+<br />
+<br />
+<br />
+
+</body>
+
+
+<script src="../bootstrap-table/js/jquery-3.2.1.min.js"></script>
+
+
+<script>
+
+ /*用户-添加*/
+  function user_management_add(title,url,w,h){
+    x_admin_show(title,url,w,h);
+  }
+
+</script>
+<script type="text/javascript">
+  $('.tablelist tbody tr:odd').addClass('odd');
+</script>
+<script>
+  $(".layui-btn").click(function () {
+     var content=$(".layui-input").val()
+    localStorage.setItem("q_content",content);
+  })
+</script>
+<script src="../bootstrap-table/js/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../bootstrap-table/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../js/layer.js"></script>
+<script src="./js/x-layui.js" charset="utf-8"></script>
+
+<script src="../bootstrap-table/js/userManagement.js"></script>
+</html>
