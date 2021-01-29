@@ -69,7 +69,7 @@ function load() {
                 width: '150px',//设置列宽
                 formatter: function (value, row, index) {
                     //如果将来 涉及到字符串数据传入参数  需要设置单引号
-                    let d = '<a href="javascript:void(0);" onclick="removeData(\'' + row.menu_id + '\')">删除试卷</a>'
+                    let d = '<a href="javascript:void(0);" onclick="removeData(\'' + row.menu_id + '\')">删除菜单</a>'
                     return d
                 }
             }

@@ -1,11 +1,67 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>菜单</title>
 <link rel="stylesheet" type="text/css" href="css/public.css">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/public.js"></script>
+	<script src="../js/jquery-3.5.1.js"></script>
+	<script>
+		window.onload=function () {
+			jsondata = {}
+			$.ajax({
+				type: "post",
+				url: "http://localhost:8080/exam_zeroone_ssm/findAllMenu1",
+				data: jsondata,
+				dataType: "json",
+				success: function (menu) {
+					if(menu!=null){
+						var dls='';
+						dls+='<a href="main.html" target="main">\n' +
+								'            <div class="line">\n' +
+								'\t\t    <!--<img class="icon1" src="images/coin01.png" />-->\n' +
+								'           首页\n' +
+								'\t\t\t</div>\n' +
+								'            </a>'
+
+						console.log(menu.length)
+						for (var i = 0; i < menu.length; i++) {
+							var menu1=menu[i];
+							console.log(typeof menu1)
+							if(menu1.menu_name=="题库管理"){
+								var dl=' <dl class="system_log">\n' +
+										'                <dt>\n' +
+										'                    <a href="tiku.html" target="main" class="cks">'+menu1.menu_name+'</a>\n' +
+										'                </dt>\n' +
+										'            </dl>'
+								dls+=dl;
+							}else if(menu1.menu_name=="试卷管理") {
+								var dl=' <dl class="system_log">\n' +
+										'                <dt>\n' +
+										'                    <a href="shijuan.html" target="main" class="cks">'+menu1.menu_name+'</a>\n' +
+										'                </dt>\n' +
+										'            </dl>'
+
+								dls+=dl;
+							}else {
+								var dl=' <dl class="system_log">\n' +
+										'                <dt>\n' +
+										'                    <a href="shijuan.html" target="main" class="cks">'+menu1.menu_name+'</a>\n' +
+										'                </dt>\n' +
+										'            </dl>'
+
+								dls+=dl;
+							}
+
+						}
+						$(".leftsidebar_box").html(dls);
+
+					}
+
+				}
+			})
+		}
+	</script>
 <head></head>
 
 <body id="bg">
@@ -13,60 +69,10 @@
 	<div class="container">
 
 		<div class="leftsidebar_box">
-			<a href="main.html" target="main">
-            <div class="line">
-		    <!--<img class="icon1" src="images/coin01.png" />-->
-           首页
-			</div>
-            </a>
-           <dl class="system_log">
-				<dt>
-                    <a href="tiku.html" target="main" class="cks">题库管理</a>
-				</dt>
-			</dl>
-            <!--档案管理-->
-            <dl class="system_log">
-                <dt>
-                    <a href="shijuan.html" target="main" class="cks">试卷管理</a>
-                </dt>
-            </dl>
 
 		</div>
 
 	</div>
 </body>
-<script>
-    window.onload=function () {
-        jsondata = {}
-        $.ajax({
-            type: "post",
-            url: "http://localhost:8080/exam_zeroone_ssm/selectMenu",
-            data: jsondata,
-            dataType: "json",
-            success: function (menu) {
 
-                for (let i = 0; i<=menu.length; i++) {
-                    var question = menu.list[i];
-                    if (question.menu_name == "题库管理") {
-                        var dl = '<dl class="system_log">\n' +
-                            '                        <dt>\n' +
-                            '                           <a href="tiku.html" target="main" class="cks">' + question.menu_name + '</a>\n' +
-                            '                            <br/>\n' +
-                            '                        </dt>' +
-                            '                    </dl>';
-                    } else if (question.menu_name == "试卷管理") {
-                        var dl = '&lt;dl class="system_log">\n' +
-                            '                        <dt>\n' +
-                            '                            <a href="shijuan.html" target="main" class="cks">' + question.menu_name + '</a>\n' +
-                            '                            <br/>\n' +
-                            '                        </dt>' +
-                            '                    </dl>';
-                    }
-                }
-                $(".container").append(dl);
-
-            }
-        })
-    }
-</script>
 </html>
