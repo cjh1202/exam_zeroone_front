@@ -5,8 +5,57 @@
     <title>天亮教育在线考试系统</title>
     <link rel="stylesheet" href="css/kaoshi.css">
     <link rel="stylesheet" href="../css/layer-css/default/layer.css">
+    <link rel="stylesheet" type="text/css" href="css/public.css" />
+    <style>
+        .left{
+            width: 201px;
+            height: 43px;
+            padding-top: 30px;
+            padding-left: 650px;
+            color: white;
+            font-size: 25px;
+            float: left;
+        }
+        #zhengge{
+            border: 1px solid #b6cad2;
+            width: 800px;
+            height: 500px;
+            background-color: #EEEEEE;
+            position: relative;
+        }
+        #title{
+            font-size: 40px;
+            margin-left: 290px;
+        }
+        p{
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+        #son4{
+            margin-left: 320px;
+            margin-top: 180px;
+        }
+
+        button{
+            background-color: mediumspringgreen;
+            width: 200px;
+            height: 50px;
+            border: 1px solid greenyellow;
+            font-size: 20px;
+        }
+
+
+    </style>
 </head>
 <body>
+<!-- 头部 -->
+<div class="head">
+    <div class="headL">
+        <h2 class="left" id="header"></h2>
+    </div>
+
+
+</div>
     <div id="zhengge">
         <div id="shiti">
             <table id="kaoti"></table>
@@ -151,6 +200,7 @@
             jsondata.sa_type=tq_type;
             jsondata.stu_id=student1.stu_id;
             jsondata.sa_answer=answer
+            console.log(jsondata)
             $.ajax({
                 url: "http://localhost:8080/exam_zeroone_ssm/saveStuAnswer",
                 type: "post",
