@@ -141,6 +141,7 @@
     $("#nextPage").click(function () {
         var t_id = localStorage.getItem("t_id");
         var currentPage=Number(localStorage.getItem("currentPage"))+1
+        console.log(currentPage)
         var totalPage=Number(localStorage.getItem("totalPage"));
         var student= localStorage.getItem("student");
         var student1=JSON.parse(student)
@@ -153,10 +154,10 @@
         var answers = JSON.parse(localStorage.getItem("answers"))
         answers[currentPage-1]=answer;
         localStorage.setItem("answers",JSON.stringify(answers))
-        if (currentPage==totalPage+1){
+        if (currentPage==totalPage+2){
             alert("考试结束")
         }
-        if (currentPage==totalPage){
+        if (currentPage==totalPage+1){
             $("#nextPage").text("提交")
 
             var jsondata={};
