@@ -13,7 +13,7 @@ function load() {
 
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/findAllMenu",
+        url: "http://47.94.174.61:8080/exam_zeroone_ssm/findAllMenu",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -81,7 +81,7 @@ function load() {
 function removeData(menu_id) {
     //console.log(t_id)
     if (menu_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/deleteMenu"
+        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/deleteMenu"
         var dataJSON = {};
 
         dataJSON.menu_id = menu_id;

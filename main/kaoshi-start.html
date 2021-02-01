@@ -71,7 +71,9 @@
     $("#beforePage").click(function () {
         $("#nextPage").text("下一页")
         var currentPage=Number(localStorage.getItem("currentPage"))-1;
-        var t_id = localStorage.getItem("t_id");
+        var student = localStorage.getItem("student");
+        var student1=JSON.parse(student);
+        var t_id = student1.t_id
 
 
         if (currentPage<1){
@@ -86,7 +88,7 @@
         jsondata.t_id=t_id;
         $.ajax({
             type:"post",
-            url:"http://localhost:8080/exam_zeroone_ssm/selectExam",
+            url:"http://47.94.174.61:8080/exam_zeroone_ssm/selectExam",
             data:jsondata,
             dataType:"json",
             success:function(pb){
@@ -139,7 +141,9 @@
         })
     })
     $("#nextPage").click(function () {
-        var t_id = localStorage.getItem("t_id");
+        var student = localStorage.getItem("student");
+        var student1=JSON.parse(student);
+        var t_id = student1.t_id;
         var currentPage=Number(localStorage.getItem("currentPage"))+1
         console.log(currentPage)
         var totalPage=Number(localStorage.getItem("totalPage"));
@@ -168,7 +172,7 @@
             jsondata.sa_answer=answer
 
             $.ajax({
-                url: "http://localhost:8080/exam_zeroone_ssm/saveStuAnswer",
+                url: "http://47.94.174.61:8080/exam_zeroone_ssm/saveStuAnswer",
                 type: "post",
                 data: JSON.stringify(jsondata),
                 contentType: "application/json",
@@ -178,7 +182,7 @@
                     jsonData.t_id=t_id;
                     jsonData.stu_id=student1.stu_id;
                     $.ajax({
-                        url: "http://localhost:8080/exam_zeroone_ssm/calculatedScore",
+                        url: "http://47.94.174.61:8080/exam_zeroone_ssm/calculatedScore",
                         type: "post",
                         data: JSON.stringify(jsonData),
                         contentType: "application/json",
@@ -203,7 +207,7 @@
             jsondata.sa_answer=answer
             console.log(jsondata)
             $.ajax({
-                url: "http://localhost:8080/exam_zeroone_ssm/saveStuAnswer",
+                url: "http://47.94.174.61:8080/exam_zeroone_ssm/saveStuAnswer",
                 type: "post",
                 data: JSON.stringify(jsondata),
                 contentType: "application/json",
@@ -211,7 +215,7 @@
                 success:function (result){
                     $.ajax({
                         type:"post",
-                        url:"http://localhost:8080/exam_zeroone_ssm/selectExam",
+                        url:"http://47.94.174.61:8080/exam_zeroone_ssm/selectExam",
                         data:jsonData,
                         dataType:"json",
                         success:function(pb){
@@ -273,13 +277,15 @@
         var answers=new Array();
         localStorage.setItem("answers",JSON.stringify(answers))
         var currentPage=1
-        var t_id = localStorage.getItem("t_id");
+        var student = localStorage.getItem("student");
+        var student1=JSON.parse(student);
+        var t_id = student1.t_id;
         var jsondata={}
         jsondata.currentPage="1";
         jsondata.t_id=t_id;
         $.ajax({
             type:"post",
-            url:"http://localhost:8080/exam_zeroone_ssm/selectExam",
+            url:"http://47.94.174.61:8080/exam_zeroone_ssm/selectExam",
             data:jsondata,
             dataType:"json",
             success:function(pb){

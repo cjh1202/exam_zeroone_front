@@ -14,7 +14,7 @@ function load() {
 
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/fuzzySearchUser",
+        url: "http://47.94.174.61:8080/exam_zeroone_ssm/fuzzySearchUser",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -91,7 +91,7 @@ function load() {
 function removeData(u_id) {
     console.log(u_id)
     if (u_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/deleteUser"
+        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/deleteUser"
         var dataJSON = {};
 
         dataJSON.u_id = u_id;
@@ -122,7 +122,7 @@ function removeData(u_id) {
 
 function closeUser(u_id) {
     if (u_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/closeUser"
+        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/closeUser"
         var dataJSON = {};
         dataJSON.u_id = u_id;
         //     console.log(dataJSON)
@@ -152,7 +152,7 @@ function closeUser(u_id) {
 
 function openUser(u_id) {
     if (u_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/openUser"
+        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/openUser"
         var dataJSON = {};
         dataJSON.u_id = u_id;
         //     console.log(dataJSON)

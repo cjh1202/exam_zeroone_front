@@ -17,7 +17,7 @@ function load() {
     var q_idAll=[]
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/findAllQuestionBank",
+        url: "http://47.94.174.61:8080/exam_zeroone_ssm/findAllQuestionBank",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -144,7 +144,7 @@ function load() {
 function removeData(q_id) {
     console.log(q_id)
     if (q_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/deleteTopic"
+        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/deleteTopic"
         var dataJSON = {};
 
         dataJSON.q_id = q_id;

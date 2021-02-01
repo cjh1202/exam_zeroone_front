@@ -64,7 +64,7 @@ $(document).ready(function () {
 
 
 
-        var t_id=localStorage.getItem("t_id");
+        //var t_id=localStorage.getItem("t_id");
         var username=$(".username").val()
         var userphone=$(".userphone").val()
         var userpwd=$(".usercheckNum").val()
@@ -72,10 +72,10 @@ $(document).ready(function () {
         jsonData.stu_name=username;
         jsonData.stu_checkNum=userpwd;
         jsonData.stu_phone=userphone;
-        jsonData.t_id=t_id;
+       // jsonData.t_id=t_id;
       //  console.log(jsonData)
         $.ajax({
-            url: "http://localhost:8080/exam_zeroone_ssm/stuLogin",
+            url: "http://47.94.174.61:8080/exam_zeroone_ssm/stuLogin",
             type: "post",
             data: JSON.stringify(jsonData),
             contentType: "application/json",

@@ -16,7 +16,7 @@ function load() {
 
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/queryScore",
+        url: "http://47.94.174.61:8080/exam_zeroone_ssm/queryScore",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页

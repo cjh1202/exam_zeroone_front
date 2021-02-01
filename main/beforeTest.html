@@ -52,7 +52,7 @@
 
             $.ajax({
                 type:"post",
-                url:"http://localhost:8080/exam_zeroone_ssm/findTestPaperURl?t_id="+t_id,
+                url:"http://47.94.174.61:8080/exam_zeroone_ssm/findTestPaperURl?t_id="+t_id,
                 dataType:"json",
                 success:function (testPaper){
                     if(testPaper!=null){
@@ -101,6 +101,9 @@
 </body>
 <script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
 <script>
+   /* var student=localStorage.getItem("student");
+    let stu1 = JSON.parse(student);
+    console.log(stu1.t_id)*/
     function fun1(){
         window.location.href="kaoshi-start.html"
     }

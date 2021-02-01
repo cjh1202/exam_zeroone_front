@@ -87,7 +87,7 @@ $('#login_btn').on('click', function(){
 	jsonData.m_password=pwd;
 
 	$.ajax({
-		url: "http://localhost:8080/exam_zeroone_ssm/managerLogin",
+		url: "http://47.94.174.61:8080/exam_zeroone_ssm/managerLogin",
 		type: "post",
 		data: JSON.stringify(jsonData),
 		contentType: "application/json",

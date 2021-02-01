@@ -16,7 +16,7 @@ function load() {
 
 
     $("#table1").bootstrapTable({
-        url: "http://localhost:8080/exam_zeroone_ssm/findAllTestPaper",
+        url: "http://47.94.174.61:8080/exam_zeroone_ssm/findAllTestPaper",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -113,13 +113,13 @@ function selectStudentScore(t_id){
 
 function startTest(t_id) {
     localStorage.setItem("t_id",t_id);
-    window.location.href="../main/testPaperURL.html"
+    window.location.href="../main/testPaperURl.html?_ijt=7dr9gkibgtkh9mlthlte8kts9t"
 }
 
 function openTestPaper(t_id) {
   //  console.log(t_id);
     if (t_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/openTestPaper"
+        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/openTestPaper"
         var dataJSON = {};
         dataJSON.t_id = t_id;
    //     console.log(dataJSON)
@@ -149,7 +149,7 @@ function openTestPaper(t_id) {
 function removeData(t_id) {
     //console.log(t_id)
     if (t_id) {
-        let url = "http://localhost:8080/exam_zeroone_ssm/deleteTestPaper"
+        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/deleteTestPaper"
         var dataJSON = {};
 
         dataJSON.t_id = t_id;
