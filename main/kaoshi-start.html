@@ -46,6 +46,7 @@
 
 
     </style>
+    <script src="../js/public.js"></script>
 </head>
 <body>
 <!-- 头部 -->
@@ -66,7 +67,7 @@
 </body>
 <script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
 <script src="../js/layer.js"></script>
-
+<script src="../js/public.js"></script>
 <script>
     $("#beforePage").click(function () {
         $("#nextPage").text("下一页")
@@ -88,7 +89,7 @@
         jsondata.t_id=t_id;
         $.ajax({
             type:"post",
-            url:"http://47.94.174.61:8080/exam_zeroone_ssm/selectExam",
+            url:publicUrl+"selectExam",
             data:jsondata,
             dataType:"json",
             success:function(pb){
@@ -172,7 +173,7 @@
             jsondata.sa_answer=answer
 
             $.ajax({
-                url: "http://47.94.174.61:8080/exam_zeroone_ssm/saveStuAnswer",
+                url: publicUrl+"saveStuAnswer",
                 type: "post",
                 data: JSON.stringify(jsondata),
                 contentType: "application/json",
@@ -182,12 +183,15 @@
                     jsonData.t_id=t_id;
                     jsonData.stu_id=student1.stu_id;
                     $.ajax({
-                        url: "http://47.94.174.61:8080/exam_zeroone_ssm/calculatedScore",
+                        url: publicUrl+"calculatedScore",
                         type: "post",
                         data: JSON.stringify(jsonData),
                         contentType: "application/json",
                         dataType: "json",
                         success:function (student){
+                            if(student!=null){
+                                window.location.href="afterTest.html"
+                            }
                             console.log(student)
                         }
                     });
@@ -207,7 +211,7 @@
             jsondata.sa_answer=answer
             console.log(jsondata)
             $.ajax({
-                url: "http://47.94.174.61:8080/exam_zeroone_ssm/saveStuAnswer",
+                url: publicUrl+"saveStuAnswer",
                 type: "post",
                 data: JSON.stringify(jsondata),
                 contentType: "application/json",
@@ -215,7 +219,7 @@
                 success:function (result){
                     $.ajax({
                         type:"post",
-                        url:"http://47.94.174.61:8080/exam_zeroone_ssm/selectExam",
+                        url:publicUrl+"selectExam",
                         data:jsonData,
                         dataType:"json",
                         success:function(pb){
@@ -285,7 +289,7 @@
         jsondata.t_id=t_id;
         $.ajax({
             type:"post",
-            url:"http://47.94.174.61:8080/exam_zeroone_ssm/selectExam",
+            url:publicUrl+"selectExam",
             data:jsondata,
             dataType:"json",
             success:function(pb){

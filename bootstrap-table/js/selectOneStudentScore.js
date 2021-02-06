@@ -17,7 +17,7 @@ function load() {
     console.log(t_id);
 
     $("#table1").bootstrapTable({
-        url: "http://47.94.174.61:8080/exam_zeroone_ssm/testAndAnswer",
+        url: publicUrl+"testAndAnswer",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页

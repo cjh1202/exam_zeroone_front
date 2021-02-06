@@ -5,6 +5,7 @@
 <title>注册</title>
 <link type="text/css" rel="stylesheet" href="css/zhuce.css" />
 <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script src="js/public.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	var height=$(document).height();
@@ -75,7 +76,7 @@ $(document).ready(function () {
        // jsonData.t_id=t_id;
       //  console.log(jsonData)
         $.ajax({
-            url: "http://47.94.174.61:8080/exam_zeroone_ssm/stuLogin",
+            url: publicUrl+"stuLogin",
             type: "post",
             data: JSON.stringify(jsonData),
             contentType: "application/json",

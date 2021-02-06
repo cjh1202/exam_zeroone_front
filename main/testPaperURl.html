@@ -45,7 +45,7 @@
 
         $.ajax({
             type:"post",
-            url:"http://47.94.174.61:8080/exam_zeroone_ssm/findTestPaperURl?t_id="+t_id,
+            url:publicUrl+"findTestPaperURl?t_id="+t_id,
             dataType:"json",
             success:function (testPaper){
                 if(testPaper!=null){

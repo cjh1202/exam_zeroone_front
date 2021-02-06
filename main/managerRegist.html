@@ -16,6 +16,7 @@
 
 		<script src="js/jquery-1.11.0.min.js"></script>
         <script src="js/layer.js" type="text/javascript"></script>
+		<script src="../js/public.js"></script>
 <title>登录</title>
 </head>
 
@@ -87,7 +88,7 @@ $('#login_btn').on('click', function(){
 	jsonData.m_password=pwd;
 
 	$.ajax({
-		url: "http://47.94.174.61:8080/exam_zeroone_ssm/managerRegist",
+		url: publicUrl+"managerRegist",
 		type: "post",
 		data: JSON.stringify(jsonData),
 		contentType: "application/json",

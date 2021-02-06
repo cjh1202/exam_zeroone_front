@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>欢迎参加考试</title>
+    <title>考试结束</title>
     <link rel="stylesheet" type="text/css" href="css/public.css" />
     <style>
         .left{
@@ -77,21 +77,15 @@
 </div>
 
 <div id="div1">
-    <span id="title">考试说明</span>
+    <span id="title">考试结束</span>
     <div id="parent">
 
         <div id="son1">
-            <p>1. 考卷满分100分,60分及格。</p>
-        </div>
-        <div id="son2">
-            <p id="p1">2. 考试开始时间:结束时间:</p>
-        </div>
-        <div id="son3">
-            <p>3. 若答题过程中异常退出，使用相同考号重新登录继续考试。</p>
+            <p>考生请离开教室</p>
         </div>
 
         <div id="son4">
-            <button onclick="fun1()">进入考试</button>
+            <button onclick="fun1()">退出考试</button>
         </div>
     </div>
 
@@ -106,7 +100,7 @@
     let stu1 = JSON.parse(student);
     console.log(stu1.t_id)*/
     function fun1(){
-        window.location.href="kaoshi-start.html"
+        alert("退出成功")
     }
 </script>
 

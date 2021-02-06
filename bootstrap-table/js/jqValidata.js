@@ -20,7 +20,7 @@ $(function(){
                 rangelength:[3,12],
                 //远程验证
                 remote:{
-                    url: "http://localhost:8080/SpringMVC_1/validataAcc",     //后台处理程序
+                    url: publicUrl+"validataAcc",     //后台处理程序
                     type: "post",               //数据发送方式
                     dataType: "json",           //接受数据格式
                     data: {                     //要传递的数据

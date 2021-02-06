@@ -1,3 +1,4 @@
+
 $(function(){
 
     load();
@@ -16,7 +17,7 @@ function load() {
 
 
     $("#table1").bootstrapTable({
-        url: "http://47.94.174.61:8080/exam_zeroone_ssm/findAllTestPaper",
+        url: publicUrl+"findAllTestPaper",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -119,7 +120,7 @@ function startTest(t_id) {
 function openTestPaper(t_id) {
   //  console.log(t_id);
     if (t_id) {
-        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/openTestPaper"
+        let url = publicUrl+"openTestPaper"
         var dataJSON = {};
         dataJSON.t_id = t_id;
    //     console.log(dataJSON)
@@ -149,7 +150,7 @@ function openTestPaper(t_id) {
 function removeData(t_id) {
     //console.log(t_id)
     if (t_id) {
-        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/deleteTestPaper"
+        let url = publicUrl+"deleteTestPaper"
         var dataJSON = {};
 
         dataJSON.t_id = t_id;

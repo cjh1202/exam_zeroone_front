@@ -19,7 +19,7 @@ function load() {
     var tq_idAll=[]
 
     $("#table1").bootstrapTable({
-        url: "http://47.94.174.61:8080/exam_zeroone_ssm/findAllTestQuestionBank",
+        url: publicUrl+"findAllTestQuestionBank",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -122,7 +122,7 @@ function load() {
 function removeData(tq_id) {
     console.log(tq_id)
     if (tq_id) {
-        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/deleteTopicFromTestPaper"
+        let url = publicUrl+"deleteTopicFromTestPaper"
         var dataJSON = {};
 
         dataJSON.tq_id = tq_id;

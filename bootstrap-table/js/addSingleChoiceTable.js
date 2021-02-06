@@ -18,7 +18,7 @@ function load() {
     var q_idAll=[]
 
     $("#table1").bootstrapTable({
-        url: "http://47.94.174.61:8080/exam_zeroone_ssm/findAllSingleChoice",
+        url: publicUrl+"findAllSingleChoice",
 
         striped: true,//是否显示隔行换色
         pageNumber: 1,//初始化加载第一页
@@ -147,7 +147,7 @@ function addData(q_id) {
     var item1 = localStorage.getItem("Tid");
     console.log(q_id)
     if (q_id) {
-        let url = "http://47.94.174.61:8080/exam_zeroone_ssm/addTopicToTestPaper"
+        let url = publicUrl+"addTopicToTestPaper"
         var dataJSON = {};
         dataJSON.q_id = q_id;
         dataJSON.t_id = item1;

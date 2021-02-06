@@ -6,12 +6,13 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/public.js"></script>
 	<script src="../js/jquery-3.5.1.js"></script>
+	<script src="../js/public.js"></script>
 	<script>
 		window.onload=function () {
 			jsondata = {}
 			$.ajax({
 				type: "post",
-				url: "http://47.94.174.61:8080/exam_zeroone_ssm/findAllMenu1",
+				url: publicUrl+"findAllMenu1",
 				data: jsondata,
 				dataType: "json",
 				success: function (menu) {
